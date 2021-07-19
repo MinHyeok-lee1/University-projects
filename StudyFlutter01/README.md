@@ -1,10 +1,10 @@
-# 1.
+# Study Fluuter
 소스코드를 살펴보면, Flutter 언어도 main 함수가 프로그램의 시작점입니다. 
 앱을 실행하기 위해 main 함수에서 runApp함수를 호출하는데 실행될 로직을 runApp 함수 내부에 직접 기술하고 있습니다.
 Center함수는 화면의 중앙 부분을 구성할 수 있는 함수입니다. 그리고 Center 함수 내부에 child 항목을 이용해서 화면 중앙을 실제로 구성합니다. child 항목에 텍스트를 추가하기 위해 Text 함수를 이용하고 있으며 파라미터로 출력할 텍스트와 함께 텍스트의 기술 순서를 설정하는 textDirection 속성이 기술되어 있습니다.
 ltr은 left to right의 약자로 왼쪽에서 오른쪽으로 기술한다는 의미입니다.
 
-2. 
+
 main 함수
 앱을 main함수에서 runApp함수를 통해 시작합니다. Flutter에서 제공하는 Material UI를 이용하는 Material 앱을 이용하기 위해서는 runApp함수에서 MaterialApp 함수를 호출합니다. title 속성으로 "My App"을 설정하였고, home 속성을 이용해서 MyScaffold 클래스를 생성하여 호출합니다.
 
@@ -24,7 +24,7 @@ height와 padding 그리고 decoration 항목을 통해 컨테이너의 높이�
 첫 번째와 세 번째 자식인 아이콘 버튼들을 메뉴 아이콘과 검색 아이콘을 설정하고 있으며 onPressed 항목에서 null로 설정하였기 때문에 아이콘을 클릭하더라도 실행되는 로직은 없습니다.
 두 번째 자식은 Expanded로 설정되었기 때문에 첫 번째와 세 번째 아이콘 버튼이 차지하는 영역을 제외한 모든 영역이 Expanded의 영역으로 할당되며, MyAppBar 클래스가 생성될 때 넘겨받은 title 위젯으로 Expanded를 구성하게 됩니다.
 
-3.
+
 main 함수
 runApp함수를 통해 MaterialApp을 생성하여 실행합니다. 매트리얼앱의 홈(home) 위젯으로 TutorialHome 클래스를 할당합니다.
 
