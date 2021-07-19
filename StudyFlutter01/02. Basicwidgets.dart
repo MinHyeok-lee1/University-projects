@@ -6,7 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      title: 'Appbar',
+      title: 'Baicwidgets',
       theme: ThemeData(primarySwatch: Colors.red),
       home: MyPage(),
       debugShowCheckedModeBanner: false,
@@ -19,7 +19,7 @@ class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Appbar icon menu'),
+          title: Text('Baicwidgets'),
           centerTitle: true,
           elevation: 0.0,
           leading: IconButton(
