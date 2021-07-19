@@ -168,10 +168,10 @@ class MyApp extends StatelessWidget {
     void _toggleFavorite(){
       setState((){
         if(_isFavorited){
-          _favoriteCount -= 1;
+          _favoriteCount--;
           _isFavorited = false;
         }else{
-          _favoriteCount += 1;
+          _favoriteCount++;
           _isFavorited = true;
         }
       });
