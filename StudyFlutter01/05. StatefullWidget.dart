@@ -8,9 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 본 앱의 테마 대표색상 필드에 저장
-    Color color = Theme
-        .of(context)
-        .primaryColor;
+    Color color = Theme.of(context).primaryColor;
     // 버튼 로우 구성을 위한 컨테이너 위젯
     Widget buttonSection = Container(
       child: Row(
