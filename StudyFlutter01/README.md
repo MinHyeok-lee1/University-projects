@@ -30,15 +30,24 @@ runApp함수를 통해 MaterialApp을 생성하여 실행합니다. 매트리얼
 
 TutorialHome 클래스
 main 함수에서 생성하는 매트리얼앱의 홈 위젯에 해당하는 Scaffold 위젯을 생성하여 반환하는 클래스입니다. 본 앱에서 사용하는 Scaffold 위젯의 서브 항목들은 다음과 같습니다.
+
 appBar: 앱의 상단에 표시되는 바형태의 위젯
+
 body: 앱의 중앙에 출력되는 위젯
+
 floatingActionButton: 앱을 구성하는 컨텐츠 위에 떠있는 원형의 위젯
+
 본 앱의 appBar는 AppBar 위젯을 이용해서 구성하며, 본 앱에서 사용한 AppBar 위젯의 서브 항목들은 다음과 같습니다.
+
 leading: 타이틀 위젯 앞에 출력되는 위젯
+
 title: 앱바에 출력되는 주요 위젯
+
 actions: 타이틀 위젯 뒤에 출력되는 위젯
 
 old code:
+
 final ScreenArguments args = routeSettings.arguments;
 new code:
+
 final args = routeSettings.arguments as ScreenArguments;
