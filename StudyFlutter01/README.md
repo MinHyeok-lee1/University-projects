@@ -44,9 +44,16 @@ Scaffold.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text('$result')));
       
+Key key
+@required this.todos
+
+
 new code:
 final args = routeSettings.arguments as ScreenArguments;
 
 ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text('$result')));
+
+Key ? key
+required this.todos
