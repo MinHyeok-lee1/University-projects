@@ -20,7 +20,8 @@ void main() {
         todos: List.generate(
         20, // 생성할 아이템 갯수
           (i) => Todo(
-            'Todo $i', 'A description of what needs to be done for Todo $i'),
+            'Todo $i',
+              'A description of what needs to be done for Todo $i'),
           ),
       ), // HomeScreen을 홈으로 설정
     ));
@@ -40,6 +41,7 @@ class TodosScreen extends StatelessWidget{
       ),
       // body에 리스트뷰 등록
       body: ListView.builder(
+          itemCount: todos.length,
           itemBuilder: (context, index){
             // ListTitle을 반환
             return ListTile(
