@@ -37,3 +37,8 @@ floatingActionButton: 앱을 구성하는 컨텐츠 위에 떠있는 원형의 �
 leading: 타이틀 위젯 앞에 출력되는 위젯
 title: 앱바에 출력되는 주요 위젯
 actions: 타이틀 위젯 뒤에 출력되는 위젯
+
+old code:
+final ScreenArguments args = routeSettings.arguments;
+new code:
+final args = routeSettings.arguments as ScreenArguments;
