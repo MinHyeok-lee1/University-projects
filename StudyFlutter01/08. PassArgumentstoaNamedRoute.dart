@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Navigation with arguments',
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
 
       //라우트 설정
