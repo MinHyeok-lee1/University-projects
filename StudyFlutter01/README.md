@@ -1,4 +1,4 @@
-# Study Fluuter
+# Study Flutter
 소스코드를 살펴보면, Flutter 언어도 main 함수가 프로그램의 시작점입니다. 
 앱을 실행하기 위해 main 함수에서 runApp함수를 호출하는데 실행될 로직을 runApp 함수 내부에 직접 기술하고 있습니다.
 Center함수는 화면의 중앙 부분을 구성할 수 있는 함수입니다. 그리고 Center 함수 내부에 child 항목을 이용해서 화면 중앙을 실제로 구성합니다. child 항목에 텍스트를 추가하기 위해 Text 함수를 이용하고 있으며 파라미터로 출력할 텍스트와 함께 텍스트의 기술 순서를 설정하는 textDirection 속성이 기술되어 있습니다.
