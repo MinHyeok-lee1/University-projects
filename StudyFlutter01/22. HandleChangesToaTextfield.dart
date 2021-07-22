@@ -22,7 +22,7 @@ class MyCustomForm extends StatefulWidget{
 }
 
 class _MyCustomFormState extends State<MyCustomForm>{
-  // 텍스트 에디팅 컨트롤러를 생성하여 필드에 할당
+  // TextEditingController를 생성하여 필드에 할당
   final myController = TextEditingController();
 
   // _MyCustomFormState가 생성될 때 호출
@@ -36,7 +36,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
   // _MyCustomFormState가 소멸될 때 호출
   @override
   void dispose(){
-    // 텍스트 에디팅 컨트롤러를 제거하고, 등록된 리스너도 제거
+    // TextEditingController를 제거하고, 등록된 리스너도 제거
     myController.dispose();
     super.dispose();
   }
