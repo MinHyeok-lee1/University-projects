@@ -27,6 +27,11 @@ class MyHomePage extends StatelessWidget{
   }
 }
 
+/*  InkWell 위젯
+   Container와 같이 제스쳐기능을 제공하지 않는 위젯을 래핑하여 onTap 기능 제공
+   InkWell 위젯을 탭하면 물결모양의 애니메이션 효과가 발생함
+ */
+
 class MyButton extends StatelessWidget{
   @override
   Widget build(BuildContext context){
