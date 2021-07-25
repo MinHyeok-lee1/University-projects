@@ -85,4 +85,7 @@ class MyApp extends StatelessWidget{
   }
 }
 
-/* Post -> FutureAlbum으로 수정필요
+/* Post -> Album 클래스로 수정필요
+https://flutter.dev/docs/cookbook/networking/fetch-data
+현재 error 발생
+/*
