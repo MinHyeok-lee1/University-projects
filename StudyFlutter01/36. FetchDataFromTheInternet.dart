@@ -84,3 +84,5 @@ class MyApp extends StatelessWidget{
     );
   }
 }
+
+/* Post -> FutureAlbum으로 수정필요
