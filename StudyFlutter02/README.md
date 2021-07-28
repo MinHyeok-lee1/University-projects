@@ -1,6 +1,7 @@
 # StudyFlutter - Diff
 
- Flutter에서는 runApp함수의 파라미터로 화면을 구성할 클래스(더 정확히는 위젯)의 인스턴스를 넘겨주어 앱을 실행하게 된다.
+01.
+Flutter에서는 runApp함수의 파라미터로 화면을 구성할 클래스(더 정확히는 위젯)의 인스턴스를 넘겨주어 앱을 실행하게 된다.
 
 runApp 함수에 의해 생성/호출되는 MyApp을 살펴보면 StatelessWidget 클래스를 상속하고 있다. Flutter에서 화면을 구성할 때 사용할 수 있는 위젯은 StatelessWidget과 StatefulWidget이 존재한다.
 
@@ -32,3 +33,6 @@ Scaffold의 appBar 항목에 AppBar 클래스(위젯)의 생성자를 대입하�
 AppBar 위젯는 앱 화면의 상단에 위치해서 다양한 기능을 제공해 주는데 이 강좌에서는 title 항목만 이용한다. title 항목에 텍스트를 추가하기 위해 Text 위젯을 이용
 
 계층을 잘 이해하자 화면을 구성하는 Scaffold의 내부에 Scaffold의 상단을 꾸며주는 appBar로 AppBar 위젯을 추가하였고, 이 AppBar 위젯에 타이틀로 Text 위젯을 추가한 것
+
+02.
+메소드 방식의 경우 메소드가 직접 호출되고, 위젯을 직접 반환하는 심플한 구조를 가진다. 하지만 클래스 방식은 클래스 생성자를 호출하는 방식이고 생성자는 반환값이 없는 메소드다 그러므로 반드시 build 메소드를 재정의해서 위젯이 리턴될 수 있도록 구현
