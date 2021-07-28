@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  String my_name = 'Park';
-  int my_age = 39;
+  String my_name = 'MinHyeok';
+  int my_age = 25;
   String my_location = "Daejeon";
 
   Class_A class_A = Class_A(my_name, my_age);
