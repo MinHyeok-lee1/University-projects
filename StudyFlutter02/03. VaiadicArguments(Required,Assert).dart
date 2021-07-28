@@ -67,6 +67,7 @@ class Class_D {
   var location;
 
   Class_D(String name, {this.age, @required this.location})
+    /* assert없이 @required로만 하면 null로 채워짐 -> 에러를 띄워서 강제하려면 assert를 사용해야 한다. */
       : assert(location != null) {
     this.name = name;
   }
