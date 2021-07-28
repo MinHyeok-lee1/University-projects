@@ -72,6 +72,6 @@ class Class_D {
   }
 
   void printInfo() {
-    print('<Class_C> name: $name, age: $age, location: $location');
+    print('<Class_D> name: $name, age: $age, location: $location');
   }
 }
