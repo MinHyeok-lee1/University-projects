@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     title: 'child',
+    debugShowCheckedModeBanner: false,
     home: ParentPage(),
   ));
 }
