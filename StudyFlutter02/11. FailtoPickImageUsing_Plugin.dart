@@ -1,4 +1,8 @@
 /*
+Flutter 앱 개발시에 갤러리나 카메라로부터 이미지를 읽어올때 사용하는 플러그인
+ - image_picker - (For Handle Image or Load Image ..)
+http://pub.dev/packages/image_picker
+
  Android 10 외부 저장소 접근정책때문에 생기는
  image_picker를 사용하여 갤러리나 카메라로부터 이미지를 읽어올 때
  이미지를 읽어오지 못하는 문제가 발생한다.
