@@ -52,3 +52,5 @@ main 함수 안에 runApp() 함수 호출 전 단계에서 다음의 코드를 �
 SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
 만약 가로모드 전용 앱을 개발하고자 한다면 landscapeLeft이나 landscapeRight를 설정하거나 둘 다 설정하면 가로모드 전용으로 앱을 이용가능
+
+15 ~ 19 무한 스크롤 뷰 앱 + 즐겨찾기 저장
