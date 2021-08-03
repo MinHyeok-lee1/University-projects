@@ -20,14 +20,14 @@ class MyApp extends StatelessWidget {
                 ),
                 subtitle: const Text('My City, CA 99984'),
                 leading: Icon(
-                  Icons.restaurant_menu,
+                  Icons.home_filled,
                   color: Colors.blue[500],
                 ),
               ),
               const Divider(),
               ListTile(
                 title: const Text(
-                  '(408) 555-1212',
+                  '(777) 777-7777',
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
                 leading: Icon(
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text('costa@example.com'),
+                title: const Text('Hyeok@example.com'),
                 leading: Icon(
                   Icons.contact_mail,
                   color: Colors.blue[500],
@@ -49,14 +49,14 @@ class MyApp extends StatelessWidget {
     }
 
     return MaterialApp(
-        title: 'LayoutDemo',
+        title: 'CardDemo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.white,
+          //primaryColor: Colors.white,
         ),
 
         home: Scaffold(
-          appBar: AppBar(title: Text('WOW')),
+          appBar: AppBar(title: Text('Card')),
           body: _buildCard(),
         ));
   }
