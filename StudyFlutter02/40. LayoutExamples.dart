@@ -7,8 +7,6 @@ const green = Colors.green;
 const blue = Colors.blue;
 const big = TextStyle(fontSize: 30);
 
-//////////////////////////////////////////////////
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -48,8 +46,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-//////////////////////////////////////////////////
-
 abstract class Example extends StatelessWidget {
   const Example({Key? key}) : super(key: key);
 
@@ -57,8 +53,6 @@ abstract class Example extends StatelessWidget {
 
   String get explanation;
 }
-
-//////////////////////////////////////////////////
 
 class FlutterLayoutArticle extends StatefulWidget {
   const FlutterLayoutArticle(
@@ -196,8 +190,6 @@ class _FlutterLayoutArticleState extends State<FlutterLayoutArticle> {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Button extends StatelessWidget {
   final bool isSelected;
   final int exampleNumber;
@@ -230,7 +222,6 @@ class Button extends StatelessWidget {
     );
   }
 }
-//////////////////////////////////////////////////
 
 class Example1 extends Example {
   const Example1({Key? key}) : super(key: key);
@@ -250,8 +241,6 @@ class Example1 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Example2 extends Example {
   const Example2({Key? key}) : super(key: key);
 
@@ -269,8 +258,6 @@ class Example2 extends Example {
     return Container(width: 100, height: 100, color: red);
   }
 }
-
-//////////////////////////////////////////////////
 
 class Example3 extends Example {
   const Example3({Key? key}) : super(key: key);
@@ -294,8 +281,6 @@ class Example3 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Example4 extends Example {
   const Example4({Key? key}) : super(key: key);
 
@@ -318,8 +303,6 @@ class Example4 extends Example {
     );
   }
 }
-
-//////////////////////////////////////////////////
 
 class Example5 extends Example {
   const Example5({Key? key}) : super(key: key);
@@ -347,8 +330,6 @@ class Example5 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Example6 extends Example {
   const Example6({Key? key}) : super(key: key);
 
@@ -374,8 +355,6 @@ class Example6 extends Example {
     );
   }
 }
-
-//////////////////////////////////////////////////
 
 class Example7 extends Example {
   const Example7({Key? key}) : super(key: key);
@@ -410,8 +389,6 @@ class Example7 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Example8 extends Example {
   const Example8({Key? key}) : super(key: key);
 
@@ -437,8 +414,6 @@ class Example8 extends Example {
     );
   }
 }
-
-//////////////////////////////////////////////////
 
 class Example9 extends Example {
   const Example9({Key? key}) : super(key: key);
@@ -471,8 +446,6 @@ class Example9 extends Example {
     );
   }
 }
-
-//////////////////////////////////////////////////
 
 class Example10 extends Example {
   const Example10({Key? key}) : super(key: key);
@@ -508,8 +481,6 @@ class Example10 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Example11 extends Example {
   const Example11({Key? key}) : super(key: key);
 
@@ -542,8 +513,6 @@ class Example11 extends Example {
     );
   }
 }
-
-//////////////////////////////////////////////////
 
 class Example12 extends Example {
   const Example12({Key? key}) : super(key: key);
@@ -578,8 +547,6 @@ class Example12 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
 class Example13 extends Example {
   const Example13({Key? key}) : super(key: key);
 
@@ -599,7 +566,6 @@ class Example13 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example14 extends Example {
   const Example14({Key? key}) : super(key: key);
@@ -623,7 +589,6 @@ class Example14 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example15 extends Example {
   const Example15({Key? key}) : super(key: key);
@@ -657,7 +622,6 @@ class Example15 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example16 extends Example {
   const Example16({Key? key}) : super(key: key);
@@ -683,7 +647,6 @@ class Example16 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example17 extends Example {
   const Example17({Key? key}) : super(key: key);
@@ -719,7 +682,6 @@ class Example17 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example18 extends Example {
   const Example18({Key? key}) : super(key: key);
@@ -744,7 +706,6 @@ class Example18 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example19 extends Example {
   const Example19({Key? key}) : super(key: key);
@@ -772,8 +733,6 @@ class Example19 extends Example {
   }
 }
 
-////////////////////////////////////////////////////
-
 class Example20 extends Example {
   const Example20({Key? key}) : super(key: key);
 
@@ -799,7 +758,6 @@ class Example20 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example21 extends Example {
   const Example21({Key? key}) : super(key: key);
@@ -821,7 +779,6 @@ class Example21 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example22 extends Example {
   const Example22({Key? key}) : super(key: key);
@@ -847,7 +804,6 @@ class Example22 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example23 extends Example {
   const Example23({Key? key}) : super(key: key);
@@ -876,7 +832,6 @@ class Example23 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example24 extends Example {
   const Example24({Key? key}) : super(key: key);
@@ -909,7 +864,6 @@ class Example24 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example25 extends Example {
   const Example25({Key? key}) : super(key: key);
@@ -948,7 +902,6 @@ class Example25 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example26 extends Example {
   const Example26({Key? key}) : super(key: key);
@@ -993,7 +946,6 @@ class Example26 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example27 extends Example {
   const Example27({Key? key}) : super(key: key);
@@ -1042,7 +994,6 @@ class Example27 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example28 extends Example {
   const Example28({Key? key}) : super(key: key);
@@ -1081,7 +1032,6 @@ class Example28 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
 
 class Example29 extends Example {
   const Example29({Key? key}) : super(key: key);
@@ -1120,5 +1070,3 @@ class Example29 extends Example {
     );
   }
 }
-
-//////////////////////////////////////////////////
