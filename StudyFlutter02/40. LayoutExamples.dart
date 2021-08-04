@@ -183,7 +183,7 @@ class _FlutterLayoutArticleState extends State<FlutterLayoutArticle> {
       count = exampleNumber;
       code = Fcode;
       explanation = Fexplanation;
-      print(code);
+      // print(code);
     });
   }
 }
