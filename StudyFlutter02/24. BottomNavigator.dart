@@ -84,4 +84,17 @@ class _MainPageState extends State<MainPage>{
 45줄 why not use ' List<Widget> ' ?
 List<Widget> : bottomNavigationBar 에서 하단탭을 클릭하면 화면 전환이 이루어 지는데 기존에 생성되어 있는 화면은 삭제가 되고 새로운 위젯이 생성되어 화면을 보여줌. 10번의 화면 전환이 이루어 지면 10번의 생성과 소멸이 이루어짐.
 IndexedStack : 이 위젯은 5개의 자식이 있으면 5개의 자식이 한번만 생성이 되고 Stack처럼 겹쳐져 있다가 사용자가 보고자 하는 화면은 맨위로 올라와서 보여줌. 10번의 화면 전환이 이루어 져도 각각 화면의 갯수만큼만 1번씩의 생성만 이루어짐.
- */
+
+
++ to ' pubspec.yaml '
+  assets:
+  - images/home_selected.png
+  - images/home.png
+  - images/search_selected.png
+  - images/search.png
+  - images/add.png
+  - images/profile.png
+  - images/profile_selected.png
+  - images/heart.png
+  - images/heart_selected.png
+*/
