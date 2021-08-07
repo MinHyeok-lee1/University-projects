@@ -9,11 +9,6 @@ import getpass
 cap = cv2.VideoCapture('rtsp://sonny8569:sonny8569@192.168.137.9:554/stream_ch00_0')
 
 UserName = getpass.getuser()
-
-
-
-
-
   
 if __name__ == '__main__':
     cap1time=0.0
