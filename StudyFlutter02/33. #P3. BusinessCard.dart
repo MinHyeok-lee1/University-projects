@@ -6,7 +6,13 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'BusinessCard Demo',
       home: Scaffold(
+        appBar: AppBar(
+          title: Text('BusinessCard'),
+          backgroundColor: Colors.orangeAccent,
+        ),
         backgroundColor: Colors.teal,
         body: SafeArea(
           child: Column(
