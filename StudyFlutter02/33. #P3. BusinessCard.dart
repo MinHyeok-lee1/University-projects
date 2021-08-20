@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget{
       title: 'BusinessCard Demo',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('BusinessCard'),
+          title: Text('BusinessCard Demo'),
           backgroundColor: Colors.orangeAccent,
         ),
         backgroundColor: Colors.teal,
@@ -30,7 +30,17 @@ class MyApp extends StatelessWidget{
                   color: Colors.white,
                 ),
               ),
-            ],
+              Text(
+                 'FLUTTER DEVELOPER',
+                 style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: 20.0,
+                    color: Colors.<em>teal</em>.shade100,
+                    letterSpacing: 2.5,
+                    fontWeight: FontWeight.<em>bold</em>,
+                ),
+              ),
+             ],
           ),
         ),
       ),
