@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-// Fin BusinessCard & add the lion image and font
+
+// End the BusinessCard & add the lion image and font
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
