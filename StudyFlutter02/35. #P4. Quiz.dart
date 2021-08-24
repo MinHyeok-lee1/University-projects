@@ -93,6 +93,18 @@ class _QuizPageState extends State<QuizPage>{
             ),
           ),
         ),
+        Row(
+          children: <Widget>[
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          ],
+        )
         // TODO: 스코어 발생 처리
       ],
     );
