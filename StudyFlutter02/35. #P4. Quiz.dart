@@ -30,6 +30,14 @@ class QuizPage extends StatefulWidget{
 }
 
 List<Widget> scoreKeeper = [];
+List<String> questions = [
+  '사과는 빨간색인가요?',
+  '남극의 최초 발견자는 피어로인가요?',
+  '나는 \'잘\' 생겼나요?',
+];
+List<bool> answer = [true, true, true];
+int questionNumber = 0;
+bool correctAnswer = answer[questionNumber];
 
 class _QuizPageState extends State<QuizPage>{
   @override
@@ -44,7 +52,7 @@ class _QuizPageState extends State<QuizPage>{
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                '남극의 최초 발견자는 아문센이다.',
+                questions[questionNumber],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -69,6 +77,9 @@ class _QuizPageState extends State<QuizPage>{
                 ),
               ),
               onPressed: (){
+                questionNumber++;
+                if(correctAnswer) print('정답');
+                else print('오답');
                 // The user picked true.
                 setState(() {
                   scoreKeeper.add(
@@ -98,6 +109,9 @@ class _QuizPageState extends State<QuizPage>{
                 ),
               ),
               onPressed: (){
+                questionNumber++;
+                if(!correctAnswer) print('정답');
+                else print('오답');
                 // The user picked true.
                 setState(() {
                   scoreKeeper.add(
