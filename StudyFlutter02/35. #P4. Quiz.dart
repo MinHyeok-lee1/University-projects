@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Quizzler());
+void main() => runApp(Quizzer());
 
-class Quizzler extends StatelessWidget{
+class Quizzer extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -28,6 +28,8 @@ class QuizPage extends StatefulWidget{
   @override
   _QuizPageState createState() => _QuizPageState();
 }
+
+List<Widget> scoreKeeper = [];
 
 class _QuizPageState extends State<QuizPage>{
   @override
@@ -68,6 +70,14 @@ class _QuizPageState extends State<QuizPage>{
               ),
               onPressed: (){
                 // The user picked true.
+                setState(() {
+                  scoreKeeper.add(
+                    Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                  );
+                });
               },
             ),
           ),
@@ -89,21 +99,20 @@ class _QuizPageState extends State<QuizPage>{
               ),
               onPressed: (){
                 // The user picked true.
+                setState(() {
+                  scoreKeeper.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+                  );
+                });
               },
             ),
           ),
         ),
         Row(
-          children: <Widget>[
-            Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-          ],
+          children: scoreKeeper,
         )
         // TODO: 스코어 발생 처리
       ],
