@@ -6,6 +6,7 @@ class Quizzer extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Quiz Demo',
       home: Scaffold(
         appBar: AppBar(
@@ -29,17 +30,90 @@ class QuizPage extends StatefulWidget{
   _QuizPageState createState() => _QuizPageState();
 }
 
-List<Widget> scoreKeeper = [];
+
+/*
 List<String> questions = [
   '사과는 빨간색인가요?',
   '남극의 최초 발견자는 피어로인가요?',
   '나는 \'잘\' 생겼나요?',
 ];
 List<bool> answer = [true, true, true];
-int questionNumber = 0;
 bool correctAnswer = answer[questionNumber];
+*/
+int _questionNumber = 0;
+
+class Question{
+  late String questionText;
+  late bool questionAnswer;
+
+  Question({required String q, required bool a}){
+    questionText = q;
+    questionAnswer = a;
+  }
+}
+
+class QuizBrain{
+
+  List<Question> _questionBank = [
+    Question(q: '사과는 빨간색인가요?', a: true),
+    Question(q: '남극의 최초 발견자는 피어로인가요?', a: false),
+    Question(q: '나는 \'잘\' 생겼나요?', a: true),
+    Question(q: 'Flutter 에서 클래스명의 첫 문자는 소문자이다?', a: false),
+  ];
+
+  String getQuestionText(int qNumber){
+    return _questionBank[qNumber].questionText;
+  }
+
+  bool getQuestionAnswer(int qNumber){
+    return _questionBank[qNumber].questionAnswer;
+  }
+
+  void nextQuestion(){
+    if(_questionNumber < _questionBank.length - 1) _questionNumber++;
+    else _questionNumber = 0;
+  }
+}
+
+QuizBrain quizBrain = QuizBrain();
+
+//questionBank[questionNumber].questionText -> quizBrain.questionBank[questionNumber].questionText;
+//questionBank[questionNumber].questionAnswer -> quizBrain.questionBank[questionNumber].questionAnswer;
+
 
 class _QuizPageState extends State<QuizPage>{
+  List<Widget> scoreKeeper = [];
+  void checkAnswer(bool userPickedAnswer){
+    bool correctAnswer = quizBrain.getQuestionAnswer(_questionNumber);
+
+    if(userPickedAnswer == correctAnswer) {
+      print('정답');
+      setState(() {
+        scoreKeeper.add(
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+      });
+    }
+    else {
+      print('오답');
+      setState(() {
+        scoreKeeper.add(
+          Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      });
+    }
+
+    setState((){
+      quizBrain.nextQuestion();
+    });
+  }
+
   @override
   Widget build(BuildContext context){
     return Column(
@@ -52,7 +126,7 @@ class _QuizPageState extends State<QuizPage>{
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                quizBrain.getQuestionText(_questionNumber),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -77,18 +151,7 @@ class _QuizPageState extends State<QuizPage>{
                 ),
               ),
               onPressed: (){
-                questionNumber++;
-                if(correctAnswer) print('정답');
-                else print('오답');
-                // The user picked true.
-                setState(() {
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  );
-                });
+                checkAnswer(true);
               },
             ),
           ),
@@ -109,18 +172,7 @@ class _QuizPageState extends State<QuizPage>{
                 ),
               ),
               onPressed: (){
-                questionNumber++;
-                if(!correctAnswer) print('정답');
-                else print('오답');
-                // The user picked true.
-                setState(() {
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ),
-                  );
-                });
+                checkAnswer(false);
               },
             ),
           ),
@@ -128,7 +180,6 @@ class _QuizPageState extends State<QuizPage>{
         Row(
           children: scoreKeeper,
         )
-        // TODO: 스코어 발생 처리
       ],
     );
   }
