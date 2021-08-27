@@ -39,6 +39,7 @@ List<String> questions = [
 ];
 List<bool> answer = [true, true, true];
 bool correctAnswer = answer[questionNumber];
+--> 클래스로 관리
 */
 int _questionNumber = 0;
 
@@ -77,8 +78,9 @@ class QuizBrain{
 
 QuizBrain quizBrain = QuizBrain();
 
-//questionBank[questionNumber].questionText -> quizBrain.questionBank[questionNumber].questionText;
-//questionBank[questionNumber].questionAnswer -> quizBrain.questionBank[questionNumber].questionAnswer;
+/*questionBank[questionNumber].questionText -> quizBrain.questionBank[questionNumber].questionText;
+  questionBank[questionNumber].questionAnswer -> quizBrain.questionBank[questionNumber].questionAnswer;
+  --> 함수로 관리     */
 
 
 class _QuizPageState extends State<QuizPage>{
