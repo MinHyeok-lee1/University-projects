@@ -39,7 +39,7 @@ List<String> questions = [
 ];
 List<bool> answer = [true, true, true];
 bool correctAnswer = answer[questionNumber];
---> 클래스로 관리
+--> 질문지, 정답, 참,거짓 등을 클래스로 관리
 */
 int _questionNumber = 0;
 
@@ -78,9 +78,11 @@ class QuizBrain{
 
 QuizBrain quizBrain = QuizBrain();
 
-/*questionBank[questionNumber].questionText -> quizBrain.questionBank[questionNumber].questionText;
-  questionBank[questionNumber].questionAnswer -> quizBrain.questionBank[questionNumber].questionAnswer;
-  --> 함수로 관리     */
+/*
+questionBank[questionNumber].questionText -> quizBrain.questionBank[questionNumber].questionText;
+questionBank[questionNumber].questionAnswer -> quizBrain.questionBank[questionNumber].questionAnswer;
+--> 질문지와 정답지에 접근하는 것을 클래스 내부에서 함수로 관리     
+  */
 
 
 class _QuizPageState extends State<QuizPage>{
