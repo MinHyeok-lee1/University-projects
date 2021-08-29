@@ -42,6 +42,7 @@ def campf (i):
         dilated = cv2.dilate(thresh, None, iterations=3) #잡힌 움직임 영역을 조금 더 키워줌(팽창기법) 그래서 인식되는 부위보다 살짝 더 여유있게 만들어줌(구멍도 매꿈)
         result = cv2.morphologyEx(dilated, cv2.MORPH_CLOSE, (11, 11))
         contours, _ = cv2.findContours(result, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
         ROI = cv2.imread('./black.jpg')
 
         for contour in contours:
@@ -49,7 +50,7 @@ def campf (i):
             c = np.nonzero(result)
             if area > 60:
                 count = 0
-
+                cv2.rectangle(frame2, (min(c[1])*v2, min(c[0])*v2),(max(c[1])*v2, max(c[0])*v2), (0,255,0),2)
                 ROI = frame1[min(c[0])*v2:max(c[0])*v2, min(c[1])*v2: max(c[1])*v2]
                 # x좌표 차이
                 mtX = (max(c[1])-min(c[1]))*v2
@@ -61,38 +62,32 @@ def campf (i):
                 # 바운딩박스 x좌표 vs y좌표 길이 검사 -> 둘중에 긴 값이 constV = 254보다 크고, 작고, 같을 때 별로 padding 값 설정
                 if mtX > mtY:
                     if mtX > constV:
-                        diff = mtX - constV
-                        mtX = mtX - diff
+                        mtX = constV
                         mtY = mtX
                 elif mtX < mtY:
                     if mtY > constV:
-                        diff = mtY - constV
-                        mtY = mtY - diff
+                        mtY = constV
                         mtX = mtY
 
-                ROI = cv2.resize(ROI,(mtX,mtY))
+                # ROI = cv2.resize(ROI,(mtX,mtY))
                 # ROI = cv2.copyMakeBorder(ROI,ypad,ypad,xpad,xpad,cv2.BORDER_CONSTANT,value=[0,0,0])
                 ROI = cv2.resize(ROI, size)
                 img_input = cv2.cvtColor(ROI, cv2.COLOR_BGR2RGB)
                 img_input = (img_input.astype(np.float32) / 127.0) - 1
                 img_input = np.expand_dims(img_input, axis=0)
                 prediction = model.predict(img_input)
-                idx = np.argmax(prediction)
               
-                if classes[idx] == 'Fire':
+                if prediction[0][0] > 0.95:
                     status = cv2.imwrite(os.path.join('./Fire_'+today,f'Fire_'+datetime.datetime.now().strftime('%H_%M_%S_%f')+'.jpg'),ROI)
-                    #cv2.imwrite(os.path.join('./Fire_'+today,f'Fire_'+datetime.datetime.now().strftime('%H_%M_%S_%f')+'.jpg'),ROI)
-                    cv2.putText(ROI, text=classes[idx], org=(10, 30), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1.4, color=(255, 255, 255), thickness=2)
+                    cv2.putText(ROI, text='Fire', org=(10, 30), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1.4, color=(255, 255, 255), thickness=2)
                     
-                    #time.sleep(0.05)
+                    time.sleep(0.05)
                     print("Image written to file-system : ",status)   
             else:
                 ROI = cv2.imread('black.jpg')
         
-                
+        cv2.imshow('frame', frame2)
         cv2.imshow('ROI', ROI)
-        cv2.imshow('frame', frame1)
-        #cv2.rectangle(frame1, (min(c[1])*v2, min(c[0])*v2),(max(c[1])*v2, max(c[0])*v2), (0,255,0),2)
         cv2.imshow('mask', dilated)
 
         count += 1
@@ -102,7 +97,7 @@ def campf (i):
         elif cv2.waitKey(5) == 27: #키보드에 esc키를 누르면 정지하기
             sys.exit(0)
         elif cv2.waitKey(5) == 32: #키보드에 space키를 누르면 다음영상 재생
-            return
+            break
 
 
 
@@ -112,7 +107,7 @@ cap = cv2.VideoCapture(0)
 size = (224, 224)
 
 model = tensorflow.keras.models.load_model('keras_model.h5') # 모델 가져오기(소방차, 사이렌도 학습시켜야 할듯)
-classes = ['Fire', 'none', 'none', 'none', 'none', 'none', 'none']
+classes = ['Fire', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none']
 
 nowDatetime1 = datetime.datetime.now().strftime('%Y_%m_%d')
 today = nowDatetime1
