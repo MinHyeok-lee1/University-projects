@@ -28,12 +28,12 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.teal,
         body: Center(
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.deepPurple),
+              border: Border.all(color: Colors.teal),
             ),
             width: width * 0.85,
             height: height * 0.6,
@@ -99,7 +99,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ? Text('결과보기')
                       : Text('다음문제'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.deepPurple,
+                    primary: Colors.teal,
                     onPrimary: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),

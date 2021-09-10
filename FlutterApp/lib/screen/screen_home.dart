@@ -12,17 +12,17 @@ class _HomeScreenState extends State<HomeScreen> {
     Quiz.fromMap({
       'title': 'test',
       'candidates': ['a', 'b', 'c', 'd'],
-      'answer:': 1,
+      'answer': 0
     }),
     Quiz.fromMap({
       'title': 'test',
       'candidates': ['a', 'b', 'c', 'd'],
-      'answer:': 2,
+      'answer': 0
     }),
     Quiz.fromMap({
       'title': 'test',
       'candidates': ['a', 'b', 'c', 'd'],
-      'answer:': 3,
+      'answer': 0
     }),
   ];
 
@@ -37,8 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('My Quiz App'),
-            backgroundColor: Colors.deepPurple,
+            title: Text('Layout Demo'),
+            centerTitle: true,
+            elevation: 0.0,
+            backgroundColor: Colors.teal,
             leading: Container(),
           ),
           body: Column(
@@ -79,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ElevatedButton(
                     child: Text('Do it Something!'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurple,
+                      primary: Colors.teal,
                       onPrimary: Colors.white,
                       padding:
                           EdgeInsets.symmetric(horizontal: 50, vertical: 20),

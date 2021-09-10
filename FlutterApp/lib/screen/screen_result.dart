@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:untitled/model/model_quiz.dart';
 import 'package:untitled/screen/screen_home.dart';
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
   List<int> answers;
   List<Quiz> quizs;
 
   ResultScreen({required this.answers, required this.quizs});
 
+  @override
+  _ResultScreenState createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery
@@ -17,8 +22,8 @@ class ResultScreen extends StatelessWidget {
     double height = screenSize.height;
 
     int score = 0;
-    for (int i = 0; i < quizs.length; i++) {
-      if (quizs[i].answer == answers[i]) {
+    for (int i = 0; i < widget.quizs.length; i++) {
+      if (widget.quizs[i].answer == widget.answers[i]) {
         score += 1;
       }
     }
@@ -28,16 +33,18 @@ class ResultScreen extends StatelessWidget {
         child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              title: Text('My Quiz App'),
-              backgroundColor: Colors.deepPurple,
+              title: Text('Layout Demo'),
+              centerTitle: true,
+              elevation: 0.0,
+              backgroundColor: Colors.teal,
               leading: Container(),
             ),
             body: Center(
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.deepPurple),
-                  color: Colors.deepPurple,
+                  border: Border.all(color: Colors.teal),
+                  color: Colors.teal,
                 ),
                 width: width * 0.85,
                 height: height * 0.5,
@@ -49,7 +56,7 @@ class ResultScreen extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.deepPurple),
+                        border: Border.all(color: Colors.teal),
                         color: Colors.white,
                       ),
                       width: width * 0.73,
@@ -77,7 +84,7 @@ class ResultScreen extends StatelessWidget {
                             child: Container(),
                           ),
                           Text(
-                            score.toString() + '/' + quizs.length.toString(),
+                            score.toString() + '/' + widget.quizs.length.toString(),
                             style: TextStyle(
                               fontSize: width * 0.21,
                               fontWeight: FontWeight.bold,
