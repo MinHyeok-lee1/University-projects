@@ -1,4 +1,4 @@
-// 5 vs 5 TabDouble
+// 5 vs 5 Tab2 5x2
 import 'package:flutter/material.dart';
 
 void main() {
