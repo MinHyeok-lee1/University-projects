@@ -5,14 +5,10 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -73,8 +69,8 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   // 시간 보여지는 부분
   Widget _body() {
-    var sec = _time ~/ 100; // 초
-    var hundredth = '${_time % 100}'.padLeft(2, '0');
+    var sec = _time ~/ 1000; // 초
+    var hundredth = '${_time % 1000}'.padLeft(3, '0');
 
     return Center(
       child: Padding(
@@ -143,14 +139,16 @@ class _StopWatchPageState extends State<StopWatchPage> {
             Positioned(
               right: 0,
               bottom: 20,
-              child: RaisedButton(
+              child: ElevatedButton(
                 onPressed: () {
                   setState(() {
                     _saveTime('$sec.$hundredth');
                   });
                 },
-                textColor: Colors.white,
-                padding: const EdgeInsets.all(0.0),
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.white,
+                  padding: const EdgeInsets.all(0.0),
+                ),
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
