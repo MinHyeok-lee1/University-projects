@@ -23,6 +23,8 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
     0,1,2,3,4,5,6,7,8,9
   ];
   bool _visibility = false;
+  var winnerText = 'The Winner is ';
+  var name = '';
   int winner = 0;
 
   var score1 = 0;
@@ -31,6 +33,20 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
+    double width = screenSize.width;
+
+    if(score1 == 5) {
+      name = 'Red';
+      _visibility = true;
+    }
+    else if(score2 == 5) {
+      name = 'Blue';
+      _visibility = true;
+    }
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -98,7 +114,7 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
                     ],
                   ),
                 ),
-                Container(height: 1.0, width: 500, color: Colors.white),
+                Container(height: 0.01, width: 500, color: Colors.white),
                 Expanded(
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -161,35 +177,51 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
               ],
             ),
             Visibility(
-              child: Center(
-                child: Row(
+              visible: _visibility,
+              child: RotatedBox(
+                quarterTurns: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    IconButton(
-                      color: Colors.white,
-                      onPressed: () {
-                        setState(() {
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_sharp,
+                    Text(winnerText+name,
+                      style: TextStyle(
+                        fontSize: width * 0.05,
+                        color: Colors.white,
                       ),
                     ),
-                    IconButton(
-                      color: Colors.white,
-                      onPressed: () {
-                        setState(() {
-                          reprint();
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.refresh_sharp,
-                      ),
+                    Padding(
+                      padding: EdgeInsets.all(width * 0.048),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        IconButton(
+                          color: Colors.white,
+                          hoverColor: Colors.white,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_sharp,
+                          ),
+                        ),
+                        IconButton(
+                          color: Colors.white,
+                          hoverColor: Colors.white,
+                          onPressed: () {
+                            setState(() {
+                              reprint();
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.refresh_sharp,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 ),
               ),
-              visible: _visibility,
             ),
           ],
         ),
@@ -198,6 +230,11 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
   }
 
   void reprint() {
+    index = [
+      0,1,2,3,4,5,6,7,8,9
+    ];
+    score1 = 0;
+    score2 = 0;
     winner = 0;
     _visibility = false;
   }
@@ -205,7 +242,6 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
   void colorChange(int num) {
     // timer로 _visibiility 조정
     // _visibility = true;
-
     setState(() {
       switch(num){
         case 0:{
@@ -360,8 +396,6 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
           break;
         }
       }
-      print('score1 = $score1\n');
-      print('score2 = $score2\n');
     });
   }
 }
