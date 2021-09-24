@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/model/model_quiz.dart';
-import 'package:untitled/screen/screen_quiz.dart';
+import 'package:module/screen/screen_game01.dart';
+import 'package:module/screen/screen_game02.dart';
+import 'package:module/screen/screen_game03.dart';
+import 'package:module/screen/screen_game04.dart';
+import 'package:module/screen/screen_game05.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,40 +11,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Quiz> quizs = [
-    Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
-      'answer': 0
-    }),
-    Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
-      'answer': 0
-    }),
-    Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
-      'answer': 0
-    }),
-  ];
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
     double height = screenSize.height;
+    var blue = const Color(0xff0000ff);
+    var red = const Color(0xffff0000);
 
     return WillPopScope(
       onWillPop: () async => false,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Layout Demo'),
-            centerTitle: true,
-            elevation: 0.0,
-            backgroundColor: Colors.teal,
-            leading: Container(),
+            title: Center(child: Text('Duo Battle')),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    blue,
+                    red,
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+              ),
+            ),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,59 +44,69 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Center(
                   child: Image.asset(
-                'images/lake.jpg',
-                width: width * 0.8,
-              )),
+                    'images/title.jpg',
+                    width: width * 0.8,
+                  )),
               Padding(
                 padding: EdgeInsets.all(width * 0.024),
               ),
+              gradientText('Duo Battle', width),
               Text(
-                'Home Title',
-                style: TextStyle(
-                  fontSize: width * 0.065,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'Explain This Application.\n What is this App?',
+                'You can play the game with two people on one smartphone.',
                 textAlign: TextAlign.center,
               ),
               Padding(
                 padding: EdgeInsets.all(width * 0.048),
               ),
-              _buildStep(width, '1. First Your Action'),
-              _buildStep(width, '2. Second Your Action'),
-              _buildStep(width, '3. Third Your Action'),
-              Padding(
-                padding: EdgeInsets.all(width * 0.048),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _buildStep(width, '1. Test Speed Game'),
+                  _gradient(width, height, FirstGameScreen()),
+                ],
               ),
-              Container(
-                padding: EdgeInsets.only(bottom: width * 0.036),
-                child: Center(
-                  child: ElevatedButton(
-                    child: Text('Do it Something!'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
-                      onPrimary: Colors.white,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                      minimumSize: Size(width * 0.8, height * 0.05),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => QuizScreen(
-                            quizs: quizs,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.024),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  _buildStep(width, '2. Try Faster than rival1'),
+                  _gradient(width, height, SecondGameScreen()),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.024),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  _buildStep(width, '3. Try Faster than rival2'),
+                  _gradient(width, height, ThirdGameScreen()),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.024),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  _buildStep(width, '4. Try Faster than rival3'),
+                  _gradient(width, height, FourthGameScreen()),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.024),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  _buildStep(width, '5. Try Faster than rival4'),
+                  _gradient(width, height, FifthGameScreen()),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.024),
               ),
             ],
           ),
@@ -128,5 +133,68 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  Widget _gradient(double width, double height, Widget widget) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(80),
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xff0000ff),
+            const Color(0xffff0000),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Center(
+        child: MaterialButton(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          minWidth: width * 0.4,
+          height: height * 0.004,
+          shape: StadiumBorder(),
+          child: Padding(
+            padding: EdgeInsets.all(width * 0.015),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'Battle Start   ',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => widget,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget gradientText(String text, double width) {
+    final Shader linearGradientShader = LinearGradient(
+      colors: [
+        const Color(0xff0000ff),
+        const Color(0xffff0000),
+      ],
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+    ).createShader(Rect.fromLTWH(150.0, 20.0, 150.0, 20.0));
+    return Text(text,
+        style: TextStyle(
+            fontSize: width * 0.065,
+            fontWeight: FontWeight.bold,
+            foreground: Paint()..shader = linearGradientShader));
   }
 }
