@@ -122,10 +122,8 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     setState(() {
       if (winner == 1) {
         colorTwo = const Color(0xffff0000);
-        print('player red win!');
       } else {
         colorOne = const Color(0xff0000ff);
-        print('player blue win!');
       }
     });
   }
