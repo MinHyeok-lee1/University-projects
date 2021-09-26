@@ -190,7 +190,47 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   // 1/1000초에 한 번씩 time 1씩 증가
   void _start() {
-    _timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 1), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 2), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 3), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 4), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 5), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 6), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 7), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 8), (timer) async {
+      setState(() {
+        _time++;
+      });
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 9), (timer) async {
       setState(() {
         _time++;
       });
