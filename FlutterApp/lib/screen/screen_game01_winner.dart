@@ -1,4 +1,4 @@
-// 1 vs 1 Faster Tap
+// 1 vs 1 Faster Tap ()
 import 'dart:math';
 //import 'package:duobattle/screen/screen_home.dart';
 import 'dart:ui' as ui;
@@ -19,12 +19,13 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
   var winnerText = 'The Winner is ';
   var name = '';
   int winner = 0;
-  var rnd = Random().nextInt(8) + 3;
+  var rnd = Random().nextInt(1) + 1;
   late MilliTimer timer = new MilliTimer();
+
+  var scoreWinner = '';
 
   @override
   void initState() {
-    timer.start();
     super.initState();
   }
 
@@ -40,7 +41,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     double width = screenSize.width;
     return SafeArea(
       child: Scaffold(
-        body: mainBody(width)
+          body: mainBody(width)
       ),
     );
   }
@@ -52,8 +53,10 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
           future: Future.delayed(Duration(seconds: rnd)),
           builder: (context, snapshot) {
 // Checks whether the future is resolved, ie the duration is over
-            if (snapshot.connectionState == ConnectionState.done)
+            if (snapshot.connectionState == ConnectionState.done){
+              timer.start();
               return bodyPart2(width);
+            }
             else
               return bodyPart1(
                   width); // Return empty container to avoid build errors
@@ -77,25 +80,25 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
           ),
         ),
         Visibility(
-          visible: !_visibility,
-          child: RotatedBox(
-            quarterTurns: 1,
-            child: Center(
-              child: DefaultTextStyle(
-                style: TextStyle(
-                  fontSize: width * 0.04,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    FadeAnimatedText('Ready for Touch..!'),
-                    FadeAnimatedText('Ready for Touch...'),
-                  ],
+            visible: !_visibility,
+            child: RotatedBox(
+              quarterTurns: 1,
+              child: Center(
+                child: DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      FadeAnimatedText('Ready for Touch..!'),
+                      FadeAnimatedText('Ready for Touch...'),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
+            )
         ),
         Visibility(
           visible: _visibility,
@@ -108,6 +111,13 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
                   winnerText + name,
                   style: TextStyle(
                     fontSize: width * 0.05,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  scoreWinner,
+                  style: TextStyle(
+                    fontSize: width * 0.04,
                     color: Colors.white,
                   ),
                 ),
@@ -159,29 +169,12 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
             Expanded(
               child: InkWell(
                 child: Container(
-                  // child: Visibility(
-                  //   visible: _visibility,
-                  //   child: RotatedBox(
-                  //     quarterTurns: 1,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: <Widget>[
-                  //         Text(
-                  //           timer.saveTime(),
-                  //           style: TextStyle(
-                  //             fontSize: width * 0.03,
-                  //             color: Colors.white,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   color: colorOne,
                 ),
                 onTap: () {
                   winner = 1;
                   name = 'Red';
+                  scoreWinner = timer.saveTime();
                   colorChange();
                 },
               ),
@@ -189,82 +182,17 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
             Expanded(
               child: InkWell(
                 child: Container(
-                  // child: Visibility(
-                  //   visible: _visibility,
-                  //   child: RotatedBox(
-                  //     quarterTurns: 1,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: <Widget>[
-                  //         Text(
-                  //           timer.saveTime(),
-                  //           style: TextStyle(
-                  //             fontSize: width * 0.03,
-                  //             color: Colors.white,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   color: colorTwo,
                 ),
                 onTap: () {
                   winner = 2;
                   name = 'Blue';
+                  scoreWinner = timer.saveTime();
                   colorChange();
                 },
               ),
             ),
           ],
-        ),
-        Visibility(
-          visible: _visibility,
-          child: RotatedBox(
-            quarterTurns: 1,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  winnerText + name,
-                  style: TextStyle(
-                    fontSize: width * 0.05,
-                    color: Colors.white,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(width * 0.048),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    IconButton(
-                      color: Colors.white,
-                      hoverColor: Colors.white,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_sharp,
-                      ),
-                    ),
-                    IconButton(
-                      color: Colors.white,
-                      hoverColor: Colors.white,
-                      onPressed: () {
-                        setState(() {
-                          reprint();
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.refresh_sharp,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
         ),
       ],
     );
@@ -296,12 +224,14 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     _visibility = false;
     _first = true;
     timer.reset();
-    rnd = Random().nextInt(10) + 1;
+    rnd = Random().nextInt(1) + 1;
+    scoreWinner ='';
   }
 
   void colorChange() {
     _visibility = true;
     _first = false;
+    //print(scoreRed);
     setState(() {
       if (winner == 1) {
         colorTwo = const Color(0xffff0000);
