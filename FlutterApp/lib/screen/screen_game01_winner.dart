@@ -1,4 +1,4 @@
-// 1 vs 1 Faster Tap ()
+// 1 vs 1 Faster Tap winnerOnly// 1 vs 1 Faster Tap
 import 'dart:math';
 //import 'package:duobattle/screen/screen_home.dart';
 import 'dart:ui' as ui;
@@ -22,7 +22,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
   var rnd = Random().nextInt(1) + 1;
   late MilliTimer timer = new MilliTimer();
 
-  var scoreWinner = '';
+  var scoreWinner = 0.0;
 
   @override
   void initState() {
@@ -115,7 +115,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
                   ),
                 ),
                 Text(
-                  scoreWinner,
+                  '$scoreWinner초 ',
                   style: TextStyle(
                     fontSize: width * 0.04,
                     color: Colors.white,
@@ -225,7 +225,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     _first = true;
     timer.reset();
     rnd = Random().nextInt(1) + 1;
-    scoreWinner ='';
+    scoreWinner =0.0;
   }
 
   void colorChange() {
