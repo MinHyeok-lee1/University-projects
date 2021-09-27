@@ -1,4 +1,4 @@
-// 1 vs 1 Faster Tap winnerOnly// 1 vs 1 Faster Tap
+// 1 vs 1 Faster Tap winnerOnly
 import 'dart:math';
 //import 'package:duobattle/screen/screen_home.dart';
 import 'dart:ui' as ui;
