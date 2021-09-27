@@ -32,7 +32,17 @@ class _StopWatchPageState extends State<StopWatchPage> {
   var _icon = Icons.play_arrow;
   var _color = Colors.amber;
 
-  late List<Timer> _timer; // 타이머
+  late Timer _timer;
+  late Timer _timer0;
+  late Timer _timer1;
+  late Timer _timer2;
+  late Timer _timer3;
+  late Timer _timer4;
+  late Timer _timer5;
+  late Timer _timer6;
+  late Timer _timer7;
+  late Timer _timer8;
+
   var _time = 0; // 실제 늘어날 시간
   var _isPlaying = false; // 시작/정지 상태값
   final List<String> _saveTimes = []; // 기록하기 위한 리스트
@@ -40,7 +50,8 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   @override
   void dispose() {
-    _timer[0].cancel();
+    cancel();
+
     super.dispose();
   }
 
@@ -103,9 +114,9 @@ class _StopWatchPageState extends State<StopWatchPage> {
                   child: ListView(
                     children: _saveTimes
                         .map((time) => Text(
-                              time,
-                              style: const TextStyle(fontSize: 20),
-                            ))
+                      time,
+                      style: const TextStyle(fontSize: 20),
+                    ))
                         .toList(),
                   ),
                 )
@@ -196,33 +207,69 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   // 1/1000초에 한 번씩 time 1씩 증가
   void _start() {
-    for(int i = 0; i < 10; i++){
-      _timer[i] = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+      _timer = Timer.periodic(const Duration(milliseconds: 9), (timer) {
         setState(() {
           _time++;
         });
       });
-    }
+      _timer0 = Timer.periodic(const Duration(milliseconds: 9), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer1 = Timer.periodic(const Duration(milliseconds: 9), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer2 = Timer.periodic(const Duration(milliseconds: 9), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer3 = Timer.periodic(const Duration(milliseconds: 9), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer4 = Timer.periodic(const Duration(milliseconds: 9), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer5 = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer6 = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer7 = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
+      _timer8 = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+        setState(() {
+          _time++;
+        });
+      });
   }
 
   // 타이머 중지(취소)
   void _pause() {
-    for(int i = 0; i < 10; i++){
-      _timer[i] = Timer.periodic(const Duration(milliseconds: 10), (timer) {
-        setState(() {
-          _timer[i].cancel();
-        });
-      });
-    }
+    cancel();
   }
 
   // 초기화
   void _reset() {
     setState(() {
       _isPlaying = false;
-      for(int i = 0; i < 10; i++) {
-        _timer[i].cancel();
-      }
+      cancel();
+
       _saveTimes.clear();
       _time = 0;
     });
@@ -231,5 +278,18 @@ class _StopWatchPageState extends State<StopWatchPage> {
   // 기록하기
   void _saveTime(String time) {
     _saveTimes.insert(0, '${_saveTimes.length + 1}등 : $time');
+  }
+
+  void cancel(){
+    _timer.cancel();
+    _timer0.cancel();
+    _timer1.cancel();
+    _timer2.cancel();
+    _timer3.cancel();
+    _timer4.cancel();
+    _timer5.cancel();
+    _timer6.cancel();
+    _timer7.cancel();
+    _timer8.cancel();
   }
 }
