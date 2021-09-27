@@ -159,24 +159,24 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
             Expanded(
               child: InkWell(
                 child: Container(
-                  child: Visibility(
-                    visible: _visibility,
-                    child: RotatedBox(
-                      quarterTurns: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            timer.saveTime(),
-                            style: TextStyle(
-                              fontSize: width * 0.03,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // child: Visibility(
+                  //   visible: _visibility,
+                  //   child: RotatedBox(
+                  //     quarterTurns: 1,
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: <Widget>[
+                  //         Text(
+                  //           timer.saveTime(),
+                  //           style: TextStyle(
+                  //             fontSize: width * 0.03,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                   color: colorOne,
                 ),
                 onTap: () {
@@ -189,24 +189,24 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
             Expanded(
               child: InkWell(
                 child: Container(
-                  child: Visibility(
-                    visible: _visibility,
-                    child: RotatedBox(
-                      quarterTurns: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            timer.saveTime(),
-                            style: TextStyle(
-                              fontSize: width * 0.03,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // child: Visibility(
+                  //   visible: _visibility,
+                  //   child: RotatedBox(
+                  //     quarterTurns: 1,
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: <Widget>[
+                  //         Text(
+                  //           timer.saveTime(),
+                  //           style: TextStyle(
+                  //             fontSize: width * 0.03,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                   color: colorTwo,
                 ),
                 onTap: () {
