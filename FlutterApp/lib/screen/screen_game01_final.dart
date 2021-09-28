@@ -1,6 +1,5 @@
 // 1 vs 1 Faster Tap, Final
 import 'dart:math';
-//import 'package:duobattle/screen/screen_home.dart';
 import 'dart:ui' as ui;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
   var winnerText = 'The Winner is ';
   var name = '';
   int winner = 0;
-  var rnd = Random().nextInt(1) + 1;
+  var rnd = Random().nextInt(8) + 3;
   late MilliTimer timer = new MilliTimer();
   late MilliTimer foulR = new MilliTimer();
   late MilliTimer foulB = new MilliTimer();
@@ -320,7 +319,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     if(scoreRed < 0.0) foulR.reset();
     if(scoreBlue < 0.0) foulB.reset();
 
-    rnd = Random().nextInt(1) + 1;
+    rnd = Random().nextInt(8) + 3;
     scoreWinner =0.0;
     scoreRed =0.0;
     scoreBlue =0.0;
