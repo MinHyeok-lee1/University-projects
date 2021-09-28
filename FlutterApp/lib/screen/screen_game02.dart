@@ -1,6 +1,6 @@
-// 1 vs 1 ManyTouch None Timer Version
+// 1 vs 1 ManyTouch
 import 'package:flutter/material.dart';
-//import 'package:duobattle/screen/screen_home.dart';
+import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:duobattle/model/timer_model.dart';
@@ -49,6 +49,9 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
   var winnerText = 'The Winner is ';
   var name = '';
 
+  var rnd = Random().nextInt(3) + 3;
+  var t = Random().nextInt(8) + 3;
+
   int baseline = 10;
   var score1 = 10;
   var score2 = 10;
@@ -56,6 +59,12 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
 
   late SecTimer timer = new SecTimer();
   bool _first = true;
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,33 +79,42 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
   }
 
   Widget mainBody(double width) {
-    if(_first){
+    if (_first) {
       _first = !_first;
-    return FutureBuilder(
-        future: Future.delayed(Duration(seconds: 3)),
-        builder: (context, snapshot) {
+      return FutureBuilder(
+          future: Future.delayed(Duration(seconds: 3)),
+          builder: (context, snapshot) {
 // Checks whether the future is resolved, ie the duration is over
-          if (snapshot.connectionState == ConnectionState.done) {
-            timer.start();
-            return bodyPart1(width);
-          } else
-            return bodyPart2(width); // Return empty container to avoid build errors
-        });
+            if (snapshot.connectionState == ConnectionState.done) {
+              timer.start();
+              return bodyPart1(width);
+            } else
+              return bodyPart2(
+                  width); // Return empty container to avoid build errors
+          });
     }
 
-
-    if (baseline == 21) {
+    var time = timer.saveTime();
+    if (baseline == 21 || timeOut(time, t) == 1) {
       name = 'Red';
       colorWinner = Colors.red;
       colorTwo = colorOne;
       colorThree = colorOne!;
       _visibility = true;
       return bodyPart2(width);
-    } else if (baseline == -1) {
+    } else if (baseline == -1 || timeOut(time, t) == 2) {
       name = 'Blue';
       colorWinner = Colors.blue;
       colorOne = colorTwo;
       colorThree = colorTwo!;
+      _visibility = true;
+      return bodyPart2(width);
+    } else if (timeOut(time, t) == 3) {
+      winnerText = 'Draw!';
+      name = '';
+      colorWinner = Colors.purple;
+      colorOne = Colors.purple[200];
+      colorThree = Colors.purple[200]!;
       _visibility = true;
       return bodyPart2(width);
     }
@@ -161,9 +179,11 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
                 ],
               ),
             ),
-            Flexible(
+            Expanded(
               flex: 1,
-              child: Container(color: book[index[10]]),
+              child: Container(
+                color: book[index[10]],
+              ),
             ),
             Flexible(
               flex: 10,
@@ -393,11 +413,15 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
     score1 = 10;
     score2 = 10;
 
+    rnd = Random().nextInt(3) + 3;
+    t = Random().nextInt(8) + 3;
+    timer.reset();
 
     colorOne = Colors.red[200];
     colorTwo = Colors.blue[200];
     colorThree = Colors.white;
     colorWinner = Colors.purple[200];
+
     baseline = 10;
     _visibility = false;
     flag = 2;
@@ -464,14 +488,15 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
   }
 
 // 시간 초과되면 colorchange해주자.
-  void timeOut() {
-    if (score1 > score2) {
-      name = 'Red';
-    } else if (score2 > score1) {
-      name = 'Blue';
-    } else {
-      winnerText = 'DRAW!';
-      name = '';
+  int timeOut(int timer, int t) {
+    if (score1 > score2 && timer > t) {
+      return 1;
+    } else if (score2 > score1 && timer > t) {
+      return 2;
+    } else if (score1 == score2 && timer > t) {
+      return 3;
     }
+
+    return 0;
   }
 }
