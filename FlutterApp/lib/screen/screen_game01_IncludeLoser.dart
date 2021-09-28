@@ -12,8 +12,8 @@ class FirstGameScreen extends StatefulWidget {
 }
 
 class _FirstGameScreenState extends State<FirstGameScreen> {
-  var colorOne = const Color(0xffff0000);
-  var colorTwo = const Color(0xff0000ff);
+  var colorOne = Colors.red[200];
+  var colorTwo = Colors.blue[200];
   bool _visibility = false;
   bool _first = true;
   var winnerText = 'The Winner is ';
@@ -160,34 +160,34 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
         Visibility(
           visible: _dbvisibility,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                RotatedBox(
-                  quarterTurns: 1,
-                  child: Text(
-                    'Red: $scoreRed초 ',
-                    style: TextStyle(
-                      fontSize: width * 0.04,
-                      color: Colors.white,
-                    ),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  'Red: $scoreRed초 ',
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: const Color(0xffff0000),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(width * 0.048),
-                ),
-                RotatedBox(
-                  quarterTurns: 1,
-                  child: Text(
-                    'Blue: $scoreBlue초 ',
-                    style: TextStyle(
-                      fontSize: width * 0.04,
-                      color: Colors.white,
-                    ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.048),
+              ),
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  'Blue: $scoreBlue초 ',
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: const Color(0xff0000ff),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
       ],
     );
   }
@@ -202,7 +202,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
             Expanded(
               child: InkWell(
                 child: Container(
-                  color: colorOne,
+                  color: const Color(0xffff0000),
                 ),
                 onTap: () {
                   winner = 1;
@@ -217,7 +217,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
             Expanded(
               child: InkWell(
                 child: Container(
-                  color: colorTwo,
+                  color: const Color(0xff0000ff),
                 ),
                 onTap: () {
                   winner = 2;
@@ -243,7 +243,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
         Expanded(
           child: InkWell(
             child: Container(
-              color: Colors.redAccent,
+              color: colorOne,
             ),
             onTap: () {
               if(scoreRed == 0.0 && scoreBlue != 0.0){
@@ -257,7 +257,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
         Expanded(
           child: InkWell(
             child: Container(
-              color: Colors.blueAccent,
+              color: colorTwo,
             ),
             onTap: () {
               if(scoreBlue == 0.0 && scoreRed != 0.0){
@@ -273,8 +273,8 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
   }
 
   void reprint() {
-    colorOne = const Color(0xffff0000);
-    colorTwo = const Color(0xff0000ff);
+    colorOne = Colors.red[200];
+    colorTwo = Colors.blue[200];
     winner = 0;
     _visibility = false;
     _first = true;
@@ -292,27 +292,12 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     //print(scoreRed);
     setState(() {
       if (winner == 1) {
-        colorTwo = const Color(0xffff0000);
+        colorTwo = Colors.red[200];
         scoreWinner = scoreRed;
       } else {
-        colorOne = const Color(0xff0000ff);
+        colorOne = Colors.blue[200];
         scoreWinner = scoreBlue;
       }
     });
   }
-
-// Widget makeButton(String title, VoidCallback callback) {
-//   return IconButton(
-//     hoverColor: buttonColor,
-//     onPressed: () {
-//       setState(() {
-//         callback();
-//       });
-//     },
-//     icon: const Icon(
-//       Icons.arrow_back_sharp,
-//       color: Colors.white,
-//     ),
-//   );
-// }
 }
