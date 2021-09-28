@@ -1,5 +1,9 @@
-// ManyTouch
+// 1 vs 1 ManyTouch None Timer Version
 import 'package:flutter/material.dart';
+//import 'package:duobattle/screen/screen_home.dart';
+import 'dart:ui' as ui;
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:duobattle/model/timer_model.dart';
 
 class SecondGameScreen extends StatefulWidget {
   @override
@@ -36,198 +40,329 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
     1,
   ];
   bool _visibility = false;
+  var colorOne = Colors.red[200];
+  var colorTwo = Colors.blue[200];
+  var colorThree = Colors.white;
+
+  var colorWinner = Colors.purple[200];
 
   var winnerText = 'The Winner is ';
   var name = '';
-  int winner = 0;
+
   int baseline = 10;
   var score1 = 10;
   var score2 = 10;
-  var start_flag = 2;
+  var flag = 2;
+
+  late SecTimer timer = new SecTimer();
+  bool _first = true;
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery
-        .of(context)
-        .size;
+    Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
-
-    if(baseline == 21) {
-      name = 'Red';
-      _visibility = true;
-    }
-    else if(baseline == -1) {
-      name = 'Blue';
-      _visibility = true;
-    }
-
 
     return SafeArea(
       child: Scaffold(
-        body: Stack(
+        body: mainBody(width),
+      ),
+    );
+  }
+
+  Widget mainBody(double width) {
+    if(_first){
+      _first = !_first;
+    return FutureBuilder(
+        future: Future.delayed(Duration(seconds: 3)),
+        builder: (context, snapshot) {
+// Checks whether the future is resolved, ie the duration is over
+          if (snapshot.connectionState == ConnectionState.done) {
+            timer.start();
+            return bodyPart1(width);
+          } else
+            return bodyPart2(width); // Return empty container to avoid build errors
+        });
+    }
+
+
+    if (baseline == 21) {
+      name = 'Red';
+      colorWinner = Colors.red;
+      colorTwo = colorOne;
+      colorThree = colorOne!;
+      _visibility = true;
+      return bodyPart2(width);
+    } else if (baseline == -1) {
+      name = 'Blue';
+      colorWinner = Colors.blue;
+      colorOne = colorTwo;
+      colorThree = colorTwo!;
+      _visibility = true;
+      return bodyPart2(width);
+    }
+    return bodyPart1(width);
+  }
+
+  Widget bodyPart1(double width) {
+    return Stack(
+      children: <Widget>[
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Column(
-              mainAxisSize: MainAxisSize.max,
+            Container(height: 5.0, width: 500, color: Colors.redAccent),
+            Flexible(
+              flex: 10,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: InkWell(
+                      child: Column(
+                        children: <Widget>[
+                          Flexible(
+                            child: Container(color: book[index[0]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[1]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[2]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[3]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[4]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[5]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[6]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[7]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[8]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[9]]),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        colorChange(0);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(color: book[index[10]]),
+            ),
+            Flexible(
+              flex: 10,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: InkWell(
+                      child: Column(
+                        children: <Widget>[
+                          Flexible(
+                            child: Container(color: book[index[11]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[12]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[13]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[14]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[15]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[16]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[17]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[18]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[19]]),
+                          ),
+                          Flexible(
+                            child: Container(color: book[index[20]]),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        colorChange(1);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(height: 5.0, width: 500, color: Colors.blueAccent),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget bodyPart2(double width) {
+    return Stack(
+      children: <Widget>[
+        childBody(),
+        BackdropFilter(
+          filter: ui.ImageFilter.blur(
+            sigmaX: 8.0,
+            sigmaY: 8.0,
+          ),
+          child: Opacity(
+            opacity: 0.01,
+            child: childBody(),
+          ),
+        ),
+        Visibility(
+            visible: !_visibility,
+            child: RotatedBox(
+              quarterTurns: 1,
+              child: Center(
+                child: DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      FadeAnimatedText('Ready for Touch...'),
+                      FadeAnimatedText('Ready for Touch..!'),
+                    ],
+                  ),
+                ),
+              ),
+            )),
+        Visibility(
+          visible: _visibility,
+          child: RotatedBox(
+            quarterTurns: 1,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(height: 5.0, width: 500, color: Colors.redAccent),
-                Flexible(
-                  flex: 10,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Flexible(
-                        child: InkWell(
-                          child: Column(
-                            children: <Widget>[
-                              Flexible(
-                                child: Container(color: book[index[0]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[1]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[2]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[3]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[4]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[5]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[6]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[7]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[8]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[9]]),
-                              ),
-                            ],
-                          ),
-                          onTap: () {
-                            colorChange(0);
-                          },
-                        ),
-                      ),
-                    ],
+                Text(
+                  winnerText + name,
+                  style: TextStyle(
+                    fontSize: width * 0.05,
+                    color: colorWinner,
                   ),
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Container(color: book[index[10]]),
+                Padding(
+                  padding: EdgeInsets.all(width * 0.048),
                 ),
-                Flexible(
-                  flex: 10,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Flexible(
-                        child: InkWell(
-                          child: Column(
-                            children: <Widget>[
-                              Flexible(
-                                child: Container(color: book[index[11]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[12]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[13]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[14]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[15]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[16]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[17]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[18]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[19]]),
-                              ),
-                              Flexible(
-                                child: Container(color: book[index[20]]),
-                              ),
-                            ],
-                          ),
-                          onTap: () {
-                            colorChange(1);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(height: 5.0, width: 500, color: Colors.blueAccent),
-              ],
-            ),
-            Visibility(
-              visible: _visibility,
-              child: RotatedBox(
-                quarterTurns: 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text(winnerText+name,
-                      style: TextStyle(
-                        fontSize: width * 0.05,
-                        color: Colors.white,
+                    IconButton(
+                      color: colorWinner,
+                      hoverColor: Colors.white,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_sharp,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(width * 0.048),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        IconButton(
-                          color: Colors.white,
-                          hoverColor: Colors.white,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_sharp,
-                          ),
-                        ),
-                        IconButton(
-                          color: Colors.white,
-                          hoverColor: Colors.white,
-                          onPressed: () {
-                            setState(() {
-                              reprint();
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.refresh_sharp,
-                          ),
-                        ),
-                      ],
+                    IconButton(
+                      color: colorWinner,
+                      hoverColor: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          reprint();
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.refresh_sharp,
+                      ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        Visibility(
+          visible: _visibility,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  'Red: $score1개 ',
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: const Color(0xffff0000),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.048),
+              ),
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  'Blue: $score2개 ',
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: const Color(0xff0000ff),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget childBody() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Flexible(
+          flex: 10,
+          child: Container(
+            color: colorOne,
+          ),
+        ),
+        Flexible(
+          flex: 1,
+          child: Container(
+            color: colorThree,
+          ),
+        ),
+        Flexible(
+          flex: 10,
+          child: Container(
+            color: colorTwo,
+          ),
+        ),
+      ],
     );
   }
 
@@ -257,10 +392,18 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
     ];
     score1 = 10;
     score2 = 10;
-    winner = 0;
+
+
+    colorOne = Colors.red[200];
+    colorTwo = Colors.blue[200];
+    colorThree = Colors.white;
+    colorWinner = Colors.purple[200];
     baseline = 10;
     _visibility = false;
-    start_flag = 2;
+    flag = 2;
+    winnerText = 'The Winner is ';
+    name = '';
+    _first = true;
   }
 
   void colorChange(int num) {
@@ -271,47 +414,64 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
       switch (num) {
         case 0:
           {
-            if(baseline < 21){
-              if(start_flag == 0) {
+            if (baseline < 21) {
+              if (flag == 2) {
+                score2++;
+              }
+              if (flag == 0) {
                 ++baseline;
               }
-              start_flag = 1;
+              flag = 1;
               ++baseline;
+              --score2;
+              ++score1;
             }
-            for(int i = 0; i < baseline; i++){
+            for (int i = 0; i < baseline; i++) {
               index[i] = 0;
             }
-            for(int i = 20; i > baseline; i--){
+            for (int i = 20; i > baseline; i--) {
               index[i] = 1;
             }
             break;
           }
         case 1:
           {
-            if(baseline > -1){
-              if(start_flag == 1) {
+            if (baseline > -1) {
+              if (flag == 2) {
+                score1++;
+              }
+              if (flag == 1) {
                 --baseline;
               }
-              start_flag = 0;
+              flag = 0;
               --baseline;
+
+              --score1;
+              ++score2;
             }
-            for(int i = 0; i < baseline; i++){
+            for (int i = 0; i < baseline; i++) {
               index[i] = 0;
             }
-            for(int i = 20; i > baseline; i--){
+            for (int i = 20; i > baseline; i--) {
               index[i] = 1;
             }
             break;
           }
       }
-      print('start_flag = $start_flag\n');
     });
+
+    print('$baseline');
   }
 
 // 시간 초과되면 colorchange해주자.
-  void timeOut(){
-    if(score1 > score2) print('Winner: Player Red');
-    else if(score2 > score1) print('Winner: Player Blue');
-    else print('draw');
+  void timeOut() {
+    if (score1 > score2) {
+      name = 'Red';
+    } else if (score2 > score1) {
+      name = 'Blue';
+    } else {
+      winnerText = 'DRAW!';
+      name = '';
+    }
   }
 }
