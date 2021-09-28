@@ -37,8 +37,9 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
   @override
   void dispose() {
     timer.reset();
-    foulB.reset();
     foulR.reset();
+    foulB.reset();
+
     super.dispose();
   }
 
@@ -55,13 +56,31 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
 
   Widget mainBody(double width) {
     if(_first){
-      _first = !_first;
       return FutureBuilder(
           future: Future.delayed(Duration(seconds: rnd)),
           builder: (context, snapshot) {
 // Checks whether the future is resolved, ie the duration is over
             if (snapshot.connectionState == ConnectionState.done){
               timer.start();
+              if(scoreRed != 0.0){
+                scoreRed = foulR.saveTime() * -1;
+              }
+              if(scoreBlue != 0.0){
+                scoreBlue = foulB.saveTime() * -1;
+              }
+
+              if(scoreRed != 0.0 && scoreBlue != 0.0){
+                winner = 3;
+                name = '';
+                winnerText = 'DRAW!';
+                _visibility = true;
+                _visibility2 = true;
+                scoreWinner = 0.0;
+                colorOne = Colors.purple[200];
+                colorTwo = Colors.purple[200];
+                return bodyPart1(width);
+              }
+
               return bodyPart2(width);
             }
             else
@@ -71,7 +90,6 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     return bodyPart1(width);
   }
 
-  // 대기화면
   Widget bodyPart1(double width) {
     return Stack(
       children: <Widget>[
@@ -165,61 +183,39 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
         Visibility(
           visible: _visibility2,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                RotatedBox(
-                  quarterTurns: 1,
-                  child: Text(
-                    'Red: $scoreRed초 ',
-                    style: TextStyle(
-                      fontSize: width * 0.04,
-                      color: const Color(0xffff0000),
-                    ),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  'Red: $scoreRed초 ',
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: const Color(0xffff0000),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(width * 0.048),
-                ),
-                RotatedBox(
-                  quarterTurns: 1,
-                  child: Text(
-                    'Blue: $scoreBlue초 ',
-                    style: TextStyle(
-                      fontSize: width * 0.04,
-                      color: const Color(0xff0000ff),
-                    ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.048),
+              ),
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  'Blue: $scoreBlue초 ',
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: const Color(0xff0000ff),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
       ],
     );
   }
 
-  // 메인화면
   Widget bodyPart2(double width) {
-    if(scoreRed != 0.0 && scoreBlue != 0.0){
-      scoreRed = foulR.saveTime() * -1;
-      scoreBlue = foulB.saveTime() * -1;
-      winner = 3;
-      winnerText = 'DRAW!';
-      _visibility = true;
-      _visibility2 = true;
-      name = '';
-      scoreWinner = 0.0;
-      setState(() {
-        colorOne = Colors.purple[200];
-        colorTwo = Colors.purple[200];
-      });
-    }
-    else if(scoreRed != 0.0){
-      scoreRed = foulR.saveTime() * -1;
-    }
-    else if(scoreBlue != 0.0){
-      scoreBlue = foulB.saveTime() * -1;
-    }
-
     return Stack(
       children: <Widget>[
         Column(
@@ -233,9 +229,9 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
                 ),
                 onTap: () {
                   if(scoreRed == 0.0){
-                    scoreRed = timer.saveTime();
                     winner = 1;
                     name = 'Red';
+                    scoreRed = timer.saveTime();
                     if(scoreBlue != 0) _visibility2 = true;
                     colorChange();
                   }
@@ -275,11 +271,11 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
               color: colorOne,
             ),
             onTap: () {
-              if(scoreRed == 0.0 && scoreBlue == 0.0 && !_first){
+              if(scoreRed == 0.0 && _first){
                 foulR.start();
                 scoreRed = 1.0;
               }
-              else if(scoreRed == 0.0 && scoreBlue != 0.0){
+              else if(scoreRed == 0.0 && scoreBlue != 0.0 && !_first){
                 scoreRed = timer.saveTime();
                 _visibility2 = true;
                 setState(() {});
@@ -293,11 +289,11 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
               color: colorTwo,
             ),
             onTap: () {
-              if(scoreRed == 0.0 && scoreBlue == 0.0 && !_first){
+              if(scoreBlue == 0.0 && _first){
                 foulB.start();
                 scoreBlue = 1.0;
               }
-              else if(scoreBlue == 0.0 && scoreRed != 0.0){
+              else if(scoreBlue == 0.0 && scoreRed != 0.0 && !_first){
                 scoreBlue = timer.saveTime();
                 _visibility2 = true;
                 setState(() {});
@@ -315,47 +311,38 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
 
     winnerText = 'The Winner is ';
     winner = 0;
+
     _visibility = false;
+    _visibility2 = false;
     _first = true;
 
     timer.reset();
-    foulB.reset();
-    foulR.reset();
+    if(scoreRed < 0.0) foulR.reset();
+    if(scoreBlue < 0.0) foulB.reset();
 
     rnd = Random().nextInt(1) + 1;
-    scoreWinner = 0.0;
-    scoreRed = 0.0;
-    scoreBlue = 0.0;
-    _visibility2 = false;
+    scoreWinner =0.0;
+    scoreRed =0.0;
+    scoreBlue =0.0;
   }
 
   void colorChange() {
     _visibility = true;
-    _first = false;
+    _first = !_first;
     //print(scoreRed);
+
     setState(() {
       if (winner == 1) {
         colorTwo = Colors.red[200];
         scoreWinner = scoreRed;
-      } else {
+      } else if(winner == 2){
         colorOne = Colors.blue[200];
         scoreWinner = scoreBlue;
+      } else {
+        colorOne = Colors.purple[200];
+        colorTwo = Colors.purple[200];
+        scoreWinner = 0.0;
       }
     });
   }
-
-// Widget makeButton(String title, VoidCallback callback) {
-//   return IconButton(
-//     hoverColor: buttonColor,
-//     onPressed: () {
-//       setState(() {
-//         callback();
-//       });
-//     },
-//     icon: const Icon(
-//       Icons.arrow_back_sharp,
-//       color: Colors.white,
-//     ),
-//   );
-// }
 }
