@@ -1,4 +1,4 @@
-// 1 vs 1 ManyTouch
+// 1 vs 1 ManyTouch, Add Timer
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:ui' as ui;
@@ -370,6 +370,7 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
             color: colorOne,
           ),
         ),
+        //TODO:  Time 명시하는 Expand문제 해결 필요
         Flexible(
           flex: 1,
           child: Container(
