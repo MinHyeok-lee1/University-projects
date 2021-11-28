@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screen/screen_home.dart';
+import 'package:duobattle/screen/screen_home.dart';
 
 //final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 

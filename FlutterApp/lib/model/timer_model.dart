@@ -74,3 +74,34 @@ class MilliTimer {
     _timer8.cancel();
   }
 }
+
+class SecTimer{
+  late Timer _timer;
+
+  var _time = 0; // 실제 늘어날 시간
+// 1/1000초에 한 번씩 time 1씩 증가
+  void start() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      _time++;
+    });
+  }
+
+
+  // 초기화
+  void reset() {
+    cancel();
+    _time = 0;
+  }
+
+  // 기록하기
+  int saveTime() {
+    var sec = _time; // 초
+
+    return sec;
+  }
+
+  void cancel(){
+    _timer.cancel();
+  }
+
+}

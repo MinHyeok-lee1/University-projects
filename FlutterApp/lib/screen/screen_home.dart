@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:module/screen/screen_game01.dart';
-import 'package:module/screen/screen_game02.dart';
-import 'package:module/screen/screen_game03.dart';
-import 'package:module/screen/screen_game04.dart';
-import 'package:module/screen/screen_game05.dart';
+import 'package:duobattle/screen/screen_game01.dart';
+import 'package:duobattle/screen/screen_game05.dart';
+import 'package:duobattle/screen/screen_game03.dart';
+import 'package:duobattle/screen/screen_game04.dart';
+import 'package:duobattle/screen/screen_game02.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                   child: Image.asset(
                     'images/title.jpg',
-                    width: width * 0.8,
+                    width: width * 0.5,
                   )),
               Padding(
                 padding: EdgeInsets.all(width * 0.024),
