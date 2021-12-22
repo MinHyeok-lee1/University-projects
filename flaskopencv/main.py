@@ -2,6 +2,7 @@
 from flask import Flask, render_template, Response
 import cv2
 import mediapipe as mp
+import os 
 
 mp_drawing = mp.solutions.drawing_utils
 mp_holistic = mp.solutions.holistic
@@ -77,4 +78,4 @@ def video_feed2():
     return Response(gen_opencv(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=os.environ.get("PORT", 8080), debug=False)
