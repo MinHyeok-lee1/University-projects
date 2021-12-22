@@ -65,7 +65,7 @@ def gen_frames():
 app = Flask(__name__)
            
 @app.route('/')
-def index():
+def main():
     return render_template('index.html')
 
 @app.route('/video_feed')
