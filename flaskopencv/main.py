@@ -1,5 +1,6 @@
 #Import necessary libraries
 from flask import Flask, render_template, Response
+import cv2
 import os 
 
 #Initialize the Flask app
