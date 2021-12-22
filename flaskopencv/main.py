@@ -1,9 +1,7 @@
 from flask import Flask, render_template, Response
 import cv2
 
-app = Flask(__name__, static_url_path=”/static”)
-UPLOAD_FOLDER =’static/uploads/’
-DOWNLOAD_FOLDER = ‘static/downloads/’
+app = Flask(__name__)
 
 camera = cv2.VideoCapture(0)  # use 0 for web camera
 # for cctv camera use rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp' instead of camera
