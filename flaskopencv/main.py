@@ -4,6 +4,21 @@ import cv2
 import mediapipe as mp
 import os 
 
+#Initialize the Flask app
+app = Flask(__name__)
+           
+@app.route('/')
+def main():
+    return render_template('index.html')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/video_feed2')
+def video_feed2():
+    return Response(gen_opencv(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 mp_drawing = mp.solutions.drawing_utils
 mp_holistic = mp.solutions.holistic
 camera = cv2.VideoCapture(0)
@@ -61,21 +76,6 @@ def gen_frames():
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
-            
-#Initialize the Flask app
-app = Flask(__name__)
-           
-@app.route('/')
-def main():
-    return render_template('index.html')
-
-@app.route('/video_feed')
-def video_feed():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-@app.route('/video_feed2')
-def video_feed2():
-    return Response(gen_opencv(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.environ.get("PORT", 8080), debug=False)
