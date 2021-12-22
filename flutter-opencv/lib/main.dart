@@ -2,10 +2,14 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-void main() => runApp(WebcamApp());
+void main() => runApp(const WebcamApp());
 
 class WebcamApp extends StatelessWidget {
+  const WebcamApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => MaterialApp(
     home: WebcamPage(),
@@ -13,11 +17,14 @@ class WebcamApp extends StatelessWidget {
 }
 
 class WebcamPage extends StatefulWidget {
+  const WebcamPage({Key? key}) : super(key: key);
+
   @override
   _WebcamPageState createState() => _WebcamPageState();
 }
 
 class _WebcamPageState extends State<WebcamPage> {
+  String greetings = '';
   // Webcam widget to insert into the tree
   late Widget _webcamWidget;
   bool flag = false;
@@ -49,6 +56,25 @@ class _WebcamPageState extends State<WebcamPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text(greetings,
+            style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
+          ),
+          Center(child: Container(
+            width: 150,
+            height: 60,
+            child: TextButton(
+              onPressed: () async {
+                var uri = Uri.parse('http://127.0.0.1:5000/');
+                final response = await http.get(uri);
+                final decoded = json.decode(response.body) as Map<String, dynamic>;
+                setState((){
+                  greetings = decoded['greetings'];
+                });
+              },
+              child: Text('Press', style: TextStyle(fontSize: 24)),
+
+            ),
+          )),
           Text(
             'Webcam MediaStream:',
             style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
