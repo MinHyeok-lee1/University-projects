@@ -77,4 +77,4 @@ def video_feed2():
     return Response(gen_opencv(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port='5000', debug=True)
