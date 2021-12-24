@@ -19,7 +19,7 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
   var winnerText = 'The Winner is ';
   var name = '';
   int winner = 0;
-  var rnd = Random().nextInt(1) + 1;
+  var rnd = Random().nextInt(4) + 2;
   late MilliTimer timer = new MilliTimer();
   late MilliTimer foulR = new MilliTimer();
   late MilliTimer foulB = new MilliTimer();
@@ -74,7 +74,6 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
                 winnerText = 'DRAW!';
                 _visibility = true;
                 _visibility2 = true;
-                scoreWinner = 0.0;
                 colorOne = Colors.purple[200];
                 colorTwo = Colors.purple[200];
                 return bodyPart1(width);
@@ -316,10 +315,11 @@ class _FirstGameScreenState extends State<FirstGameScreen> {
     _first = true;
 
     if(scoreRed > 0.0 || scoreBlue > 0.0) timer.reset();
+    if(scoreRed < 0.0 && scoreBlue < 0.0) timer.reset();
     if(scoreRed < 0.0) foulR.reset();
     if(scoreBlue < 0.0) foulB.reset();
 
-    rnd = Random().nextInt(1) + 1;
+    rnd = Random().nextInt(5) + 1;
 
     scoreWinner =0.0;
     scoreRed =0.0;

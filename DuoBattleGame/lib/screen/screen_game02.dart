@@ -6,7 +6,6 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:duobattle/model/timer_model.dart';
-import 'package:async/async.dart';
 
 class SecondGameScreen extends StatefulWidget {
   @override
@@ -52,7 +51,7 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
   var winnerText = 'The Winner is ';
   var name = '';
 
-  var rnd = Random().nextInt(3) + 3;
+  var rnd = Random().nextInt(4) + 2;
   var t = Random().nextInt(8) + 3;
   var time = 0;
 
@@ -120,6 +119,7 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
       name = '';
       colorWinner = Colors.purple;
       colorOne = Colors.purple[200];
+      colorTwo = Colors.purple[200];
       colorThree = Colors.purple[200]!;
       _visibility = true;
       return bodyPart2(width);
@@ -423,7 +423,7 @@ class _SecondGameScreenState extends State<SecondGameScreen> {
     score1 = 10;
     score2 = 10;
 
-    rnd = Random().nextInt(3) + 3;
+    rnd = Random().nextInt(5) + 1;
     t = Random().nextInt(8) + 3;
     timer.reset();
 
