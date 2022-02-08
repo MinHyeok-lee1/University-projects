@@ -20,10 +20,15 @@ import time
 
 URL = 'http://multi.hannam.ac.kr/sub5/menu_1.html'
 DRIVER_PATH = './chromedriver.exe'
-
-options = webdriver.ChromeOptions()
-options.add_argument("--start-maximized")
-driver = webdriver.Chrome( executable_path=DRIVER_PATH, chrome_options=options )
+ 
+chrome_options = Options()
+chrome_options.add_argument( '--headless' )
+chrome_options.add_argument( '--log-level=3' )
+chrome_options.add_argument( '--disable-logging' )
+chrome_options.add_argument( '--no-sandbox' )
+chrome_options.add_argument( '--disable-gpu' )
+ 
+driver = webdriver.Chrome( executable_path=DRIVER_PATH, chrome_options=chrome_options )
 
 def CloseMutiAd():
     driver.find_element_by_xpath("/html/body/div[6]/div/div/a").click()
@@ -39,7 +44,7 @@ def CrawlingMuti(add):
         # Time = value.find_element_by_tag_name("span")
         # add.append([Title , Url])
         
-driver.get('http://multi.hannam.ac.kr/sub5/menu_1.html')#멀티미디어공학
+driver.get( URL )
 time.sleep(10)
 # driver.get('../sub5/menu_1.html')#멀티미디어공학
 # time.sleep(10)
