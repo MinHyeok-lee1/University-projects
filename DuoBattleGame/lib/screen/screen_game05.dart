@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 class FifthGameScreen extends StatefulWidget {
+  const FifthGameScreen({Key? key}) : super(key: key);
+
   @override
   _FifthGameScreenState createState() => _FifthGameScreenState();
 }
