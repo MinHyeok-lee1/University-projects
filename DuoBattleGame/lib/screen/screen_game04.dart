@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 class FourthGameScreen extends StatefulWidget {
+  const FourthGameScreen({Key? key}) : super(key: key);
+
 
   @override
   _FourthGameScreenState createState() => _FourthGameScreenState();
@@ -617,8 +619,6 @@ class _FourthGameScreenState extends State<FourthGameScreen> {
             break;
           }
       }
-      print('score1 = $score1\n');
-      print('score2 = $score2\n');
     });
   }
 }
