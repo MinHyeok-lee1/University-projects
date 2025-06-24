@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.chamcham">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.DIAL_PHONE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_main"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_main_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".loadingclass">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".MainActivity1"></activity>
+        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".SubActivity1"></activity>
+        <activity android:name=".SubActivity2"></activity>
+        <activity android:name=".SubActivity3"></activity>
+        <activity android:name=".SubActivity4"></activity>
+        <activity android:name=".SubActivity5"></activity>
+        <!-- 팝업 Activity -->
+        <activity android:name=".PopupActivity1" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".PopupActivity1_1" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".PopupActivity2" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".PopupActivity2_1" android:theme="@android:style/Theme.Dialog" />
+
+
+        <activity android:name=".MainActivity_1"></activity>
+        <activity android:name=".MainActivity_2"></activity>
+        <activity android:name=".MainActivity_3"></activity>
+        <activity android:name=".SubActivity_1"></activity>
+        <activity android:name=".SubActivity_2"></activity>
+        <activity android:name=".SubActivity_3"></activity>
+        <activity android:name=".SubActivity_4"></activity>
+        <activity android:name=".SubActivity_5"></activity>
+
+        <activity android:name=".Popup2Activity" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".Popup2Activity_1" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation"/>
+    </application>
+
+</manifest>
