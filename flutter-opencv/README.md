@@ -20,10 +20,6 @@ Integration experiment combining a Flutter frontend with Python OpenCV backend.
 - Flask
 - OpenCV
 
-## Screenshots
-
-TBD
-
 ## flutter what use opencv from heroku 
 
 ```sh
