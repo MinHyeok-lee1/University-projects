@@ -1,4 +1,4 @@
-# StudyFlutter02
+# study-flutter-form
 
 Intermediate Flutter exercises with focus on state, navigation, and architecture.
 
@@ -50,14 +50,11 @@ The AppBar widget is located at the top of the app screen and provides various f
 
 Understand the hierarchy well The AppBar widget was added to the inside of the Scaffold that makes up the screen with the appBar decorating the top of the Scaffold, and the Text widget was added as the title to this AppBar widget
 
-
-
 In the case of the method method, it has a simple structure in which the method is called directly and the widget is returned directly. However, the class method is a method of calling the class creator, and the creator is a method with no return value. Therefore, the build method must be redefined to implement the widget to be returned
 
-
-+ How to prevent screen rotation
-Adding a screen package to a pubspec.yaml file
-screen: ^0.0.5 #screen
+- How to prevent screen rotation
+  Adding a screen package to a pubspec.yaml file
+  screen: ^0.0.5 #screen
 
 Add Permission to AndroidManifest.xml File on Android
 <usues-permission android:name="android.permission.WAKE_LOCK" />

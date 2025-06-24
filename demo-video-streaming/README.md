@@ -1,4 +1,4 @@
-# videostreaming
+# demo-video-streaming
 
 Real-time video streaming from Python backend to browser using WebSockets.
 

@@ -1,4 +1,4 @@
-# IM
+# Insulin-manager
 
 A Java-based Android app for insulin management.
 

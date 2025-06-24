@@ -1,4 +1,4 @@
-# JavaStudy
+# study-java-algorithm
 
 A large collection of Java algorithm and data structure exercises.
 

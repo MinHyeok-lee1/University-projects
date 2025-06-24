@@ -1,4 +1,4 @@
-# AICamera
+# demo-ai-camera
 
 This project was developed as part of a university research initiative, focusing on computer vision and deep learning-based object detection using real-time IP cameras.
 

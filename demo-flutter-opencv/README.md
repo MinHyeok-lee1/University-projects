@@ -1,4 +1,4 @@
-# flutter-opencv
+# demo-flutter-opencv
 
 Integration experiment combining a Flutter frontend with Python OpenCV backend.
 
@@ -20,7 +20,7 @@ Integration experiment combining a Flutter frontend with Python OpenCV backend.
 - Flask
 - OpenCV
 
-## flutter what use opencv from heroku 
+## flutter what use opencv from heroku
 
 ```sh
 flutter build web

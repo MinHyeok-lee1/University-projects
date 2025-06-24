@@ -1,4 +1,4 @@
-# flaskopencv
+# demo-flask-opencv-stream
 
 A minimal Flask server for serving OpenCV-based image processing on Heroku.
 

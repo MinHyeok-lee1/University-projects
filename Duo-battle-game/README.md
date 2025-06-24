@@ -1,4 +1,4 @@
-# DuoBattleGame
+# Duo-battle-game
 
 A two-player mobile battle game using Flutter.
 

@@ -1,4 +1,4 @@
-# FlutterApp
+# demo-flutter-ui
 
 A collection of Flutter UI demos and small game-like apps.
 
