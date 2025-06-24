@@ -1,56 +1,73 @@
-# StudyFlutter - Diff
+# StudyFlutter02
 
-Flutter에서는 runApp함수의 파라미터로 화면을 구성할 클래스(더 정확히는 위젯)의 인스턴스를 넘겨주어 앱을 실행하게 된다.
+Intermediate Flutter exercises with focus on state, navigation, and architecture.
 
-runApp 함수에 의해 생성/호출되는 MyApp을 살펴보면 StatelessWidget 클래스를 상속하고 있다. Flutter에서 화면을 구성할 때 사용할 수 있는 위젯은 StatelessWidget과 StatefulWidget이 존재한다.
+## Topics
 
-이번 강좌에서는 한번 꾸며지면 변화가 필요없는 화면을 구성할 땐 StatelessWidget을, 필요시 화면을 재구성 할 수 있을 경우에는 StatefulWidget을 이용한다고만 이해하고 넘어가자.
+- Provider pattern
+- Infinite scrolling lists
+- Layout builder
+- Bottom navigation
+- Simple apps: Quiz, Business Card, Instagram UI
 
-이번 강좌에서는 Hello World라는 문구만 출력하면 되므로 StatelessWidget를 이용한다. StatelessWidget 클래스를 상속하면 반드시 build 메소드를 재구현해야 한다. 우선 build 메소드의 선언 형태를 살펴보자.
+## Folder Structure
 
-반환자의 타입이 Widget이므로 build 메소드에서 위젯을 구성해서 반환하고 이 반환된 위젯이 화면에 뿌려진다고 추론할 수 있다. 아규먼트로 넘겨받는 BuildContext의 인스턴스 context는 해당 위젯의 인스턴스라고 이해하자.
+- Numbered Dart files for each lesson
+- Includes zipped and image/font assets
 
-내부 구성을 살펴보면 MaterialApp 클래스의 생성자를 통해 MaterialApp의 인스턴스를 생성한 후 반환하고 있다. 생성자 내부를 보면 Scaffold 클래스의 생성자를 또 호출하고 있다. 이런 방식이 기존의 자바 개발자에겐 생소하게 느껴질 것이다. 내 경우에는 그렇다. Flutter에서는 이러한 패턴을 많이 사용한다. 아니 대부분 이런식으로 사용한다고 느껴지기도 한다.
+## StudyFlutter - Diff
 
-그래도 차근차근 풀어보면 이해할 수 있다.
+In Flutter, the app is executed by handing over instances of classes (more precisely widgets) to configure the screen with parameters of the runApp function.
 
-build 메소드에서는 MaterialApp 클래스의 인스턴스를 하나 만들어서 반환하고자 한다.
+If you look at MyApps created/called by runApp functions, they inherit the StatelessWidget class. Widget and StatefulWidget exist as widgets that can be used to configure the screen in Flutter.
 
-MaterialApp의 인스턴스 생성을 위해 MaterialApp의 생성자를 호출하고 있고 이 때 두 개의 파라미터(title, home)를 넘겨주고 있다. 기존의 언어에서는 호출하고자 하는 함수나 메소드(생성자)의 아규먼트 형태와 순서에 따라 파라미터를 넘겨주는 패턴을 이용해왔다. Flutter(더 정확히 Dart) 언어에서는 넘겨줄 파라미터의 프로퍼티를 기술해 줌으로써 아규먼트의 순서를 무시할 수 있고, 필요한 프로퍼티만을 넘겨줄 수 도 있다. 마치 JSON 객체를 다루는 방식과도 꽤 유사하다.
+In this course, let's just understand that Stateless Widget is used to compose a screen that does not need to be changed once it is decorated, and Stateful Widget is used when the screen can be reconstructed if necessary.
 
-다시 소스코드로 돌아가면 MaterialApp이라는 클래스는 title과 home라는 필드(프로퍼티)가 존재할 것이고 생성자를 통해 title과 home의 값을 넘겨받을 수 있다는 것이다.
+In this course, you only need to print the phrase Hello World, so use StatelessWidget. If you inherit the StatelessWidget class, you must re-implement the build method. First, let's look at the declaration form of the build method.
 
-여기서 title은 MaterialApp을 설명하는 1줄짜리 텍스트 문구를 저장할 수 있으며, 이 값은 Android의 경우 앱의 지시자로 사용된다. 실행 중인 앱 목록을 확인할 때 표시되는 텍스트 문구로 활용된다.
+Since the type of the half patient is Widget, it can be inferred that the build method configures and returns the widget and that the returned widget is scattered on the screen. Understand that the instance context of the Build Context that is taken over as an assembly is an instance of that widget.
 
-home 항목은 앱의 화면을 구성하는 위젯을 설정하는 항목이다. 소스에서는 Scaffold라는 클래스의 인스턴스를 담아서 생성자를 호출하고 있다. 즉 Scaffold 클래스의 인스턴스과 화면으로 그려지게 된다.
+Looking at the internal configuration, instances of MaterialApp are created and returned through the creator of the MaterialApp class. If you look inside the creator, you are calling the creator of the Scaffold class again. This method would feel unfamiliar to existing Java developers. In my case, yes. These patterns are used a lot in Flutter. Or, most of them feel like they are used this way.
 
-이번엔 Scaffold 클래스에 대해서 알아보자. Scaffold의 생성자에 body라는 프로퍼티에 Text 함수를 통해 텍스트를 추가하고 있다.
+Still, if you solve it step by step, you can understand it.
 
-Text는 텍스트를 화면에 출력하는 Flutter의 위젯이다. 이 텍스트 위젯을 Scaffold 인스턴스의 body 항목으로 설정
+In the build method, I want to create an instance of the MaterialApp class and return it.
 
-Scaffold의 appBar 항목에 AppBar 클래스(위젯)의 생성자를 대입하고 있다. AppBar 위젯의 인스턴스를 생성해서 Scaffold의 appBar 항목에 추가한다는 의미
-AppBar 위젯는 앱 화면의 상단에 위치해서 다양한 기능을 제공해 주는데 이 강좌에서는 title 항목만 이용한다. title 항목에 텍스트를 추가하기 위해 Text 위젯을 이용
+The creator of the MaterialApp is called to create an instance of the MaterialApp, and at this time, two parameters (titles, home) are handed over. In the existing language, a pattern of handing over parameters according to the form and order of the sub-element of the function or method (generator) to be called has been used. In the Flutter (More accurately, Dart) language, the order of sub-elements can be ignored by describing the property of the parameters to be handed over, and only the necessary property can be handed over. It is quite similar to how JSON objects are handled.
 
-계층을 잘 이해하자 화면을 구성하는 Scaffold의 내부에 Scaffold의 상단을 꾸며주는 appBar로 AppBar 위젯을 추가하였고, 이 AppBar 위젯에 타이틀로 Text 위젯을 추가한 것
+Returning to the source code, the class MaterialApp will have fields (properties) called Title and home, and the value of Title and home can be taken over through the creator.
+
+Here, Title can store a one-line text phrase describing the MaterialApp, which in the case of Android is used as an indicator for the app. It is used as a text phrase displayed when checking a list of running apps.
+
+The home item is an item that sets the widget that constitutes the screen of the app. In the source, an instance of a class called Scaffold is included in the creator. That is, it is drawn with instances and screens of the Scaffold class.
+
+This time, let's learn about the Scaffold class. We are adding text through a Text function to a property called body to the creator of Scaffold.
+
+Text is a widget in Flutter that outputs text on the screen. Set this text widget to body entry in Scaffold instance
+
+The creator of the AppBar class (Widget) is substituted in Scaffold's appBar item. Meaning that you create an instance of the AppBar widget and add it to the appBar entry in Scaffold
+The AppBar widget is located at the top of the app screen and provides various functions, but in this course, only the Title items are used. Use the Text widget to add text to the Title item
+
+Understand the hierarchy well The AppBar widget was added to the inside of the Scaffold that makes up the screen with the appBar decorating the top of the Scaffold, and the Text widget was added as the title to this AppBar widget
 
 
 
-메소드 방식의 경우 메소드가 직접 호출되고, 위젯을 직접 반환하는 심플한 구조를 가진다. 하지만 클래스 방식은 클래스 생성자를 호출하는 방식이고 생성자는 반환값이 없는 메소드다 그러므로 반드시 build 메소드를 재정의해서 위젯이 리턴될 수 있도록 구현
+In the case of the method method, it has a simple structure in which the method is called directly and the widget is returned directly. However, the class method is a method of calling the class creator, and the creator is a method with no return value. Therefore, the build method must be redefined to implement the widget to be returned
 
 
- + 화면회전을 방지하는 방법
-pubspec.yaml 파일에 screen패키지를 추가
++ How to prevent screen rotation
+Adding a screen package to a pubspec.yaml file
 screen: ^0.0.5 #screen
 
-Android의 AndroidManifest.xml 파일에 퍼미션 추가
+Add Permission to AndroidManifest.xml File on Android
 <usues-permission android:name="android.permission.WAKE_LOCK" />
 
-패키지 추가
+Add Package
 import 'package:flutter/services.dart';
 
-main 함수 안에 runApp() 함수 호출 전 단계에서 다음의 코드를 추가
+Add the following code in the step before calling the runApp() function inside the main function
 SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-만약 가로모드 전용 앱을 개발하고자 한다면 landscapeLeft이나 landscapeRight를 설정하거나 둘 다 설정하면 가로모드 전용으로 앱을 이용가능
+If you want to develop an app dedicated to landscape mode, you can use it exclusively for landscape mode if you set landscapeLeft or landscapeRight or both
 
-15 ~ 19 무한 스크롤 뷰 앱 + 즐겨찾기 저장
+15 to 19 Infinite Scroll View App + Save Favorites
