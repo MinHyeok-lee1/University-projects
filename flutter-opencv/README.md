@@ -1,12 +1,17 @@
 # flutter-opencv
 
-📱 + 👁️ Integration project between Flutter frontend and OpenCV-powered Python backend.
+Integration experiment combining a Flutter frontend with Python OpenCV backend.
 
 ## Features
 
-- Flutter UI for image capture or selection
-- Backend using Flask and OpenCV
-- Handles real-time image processing and returns results to Flutter app
+- Flutter for UI
+- Python backend for OpenCV logic
+- Communication via HTTP (or future WebSocket)
+
+## Folder Structure
+
+- `lib/`: Flutter source
+- `app.py`: Flask server with OpenCV logic
 
 ## Tech Stack
 
